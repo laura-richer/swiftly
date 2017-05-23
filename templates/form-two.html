@@ -1,0 +1,78 @@
+<label>Today I am...</label>
+<ul class="form-group small-block-grid-3 medium-block-grid-4" ng-init="formData.two='work'">
+    <li class="radio">
+        <label>
+           <input type="radio" name="two" ng-model="formData.two" value="work">
+           Going to work
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="two" ng-model="formData.two" value="school">
+            Going to School
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="two" ng-model="formData.two" value="dayoff">
+            Having a day off
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="two" ng-model="formData.two" value="weekend">
+            No work/school it’s the weekend!
+        </label>
+    </li>
+</ul>
+<label>This makes me...</label>
+<ul class="form-group small-block-grid-3 medium-block-grid-4" ng-init="formData.twoa='happy'">
+    <li class="radio">
+        <label>
+           <input type="radio" name="twoa" ng-model="formData.twoa" value="happy">
+           Happy
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="twoa" ng-model="formData.twoa" value="motivated">
+            Motivated
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="twoa" ng-model="formData.twoa" value="excited">
+            Excited
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="twoa" ng-model="formData.twoa" value="relaxed">
+            Relaxed
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="twoa" ng-model="formData.twoa" value="sad">
+            Sad
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="twoa" ng-model="formData.twoa" value="angry">
+            Angry
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="twoa" ng-model="formData.twoa" value="stressed">
+            Stressed
+        </label>
+    </li>    
+</ul>
+<div class="form-buttons" ng-switch="formData.two">
+    <a ui-sref="form.five" class="button" ng-switch-default>Next</a>
+    <a ui-sref="form.threea" class="button" ng-switch-when="work">Next</a>
+    <a ui-sref="form.threeb" class="button" ng-switch-when="weekend">Next</a>
+    <a ui-sref="form.threeb" class="button" ng-switch-when="dayoff">Next</a>
+</div>

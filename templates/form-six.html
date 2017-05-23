@@ -1,0 +1,42 @@
+<label>I’m ready to go to sleep, I feel...</label>
+<ul class="form-group small-block-grid-3 medium-block-grid-4" ng-init="formData.six='relaxed'">
+    <li class="radio">
+        <label>
+           <input type="radio" name="six" ng-model="formData.six" value="relaxed">
+           Relaxed
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="six" ng-model="formData.six" value="happy">
+            Happy
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="six" ng-model="formData.six" value="tired">
+            Tired
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="six" ng-model="formData.six" value="sad">
+            Sad
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="six" ng-model="formData.six" value="angry">
+            Angry
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="six" ng-model="formData.six" value="sleep">
+            Sleep? Its Friday/Saturday night, no time for sleep!
+        </label>
+    </li>
+</ul>
+<div class="form-buttons">
+    <a ui-sref="form.end" class="button">Next</a>
+</div>

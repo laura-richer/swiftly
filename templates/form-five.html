@@ -1,0 +1,42 @@
+<label>This evening I am going to...</label>
+<ul class="form-group small-block-grid-3 medium-block-grid-4" ng-init="formData.five='relax'">
+    <li class="radio">
+        <label>
+           <input type="radio" name="five" ng-model="formData.five" value="relax">
+           Relax
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="five" ng-model="formData.five" value="friends">
+            See Friends
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="five" ng-model="formData.five" value="dinner">
+            Have Friends over for dinner
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="five" ng-model="formData.five" value="evening">
+            Go out for the evening
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="five" ng-model="formData.five" value="night">
+            Go out for the night
+        </label>
+    </li>
+    <li class="radio">
+        <label>
+            <input type="radio" name="five" ng-model="formData.five" value="party">
+            PARTY!
+        </label>
+    </li>
+</ul>
+<div class="form-buttons">
+    <a ui-sref="form.six" class="button">Next</a>
+</div>
