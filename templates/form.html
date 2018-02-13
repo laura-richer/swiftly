@@ -1,13 +1,14 @@
 <div class="row form-padding">
 	<div class="small-12 columns">
 	  <div id="form-container">
-	      	<p>Answer a few questions about your day, what you did and how you are feeling and you will get your very own unique soundtrack for your day based on your answers.</p>
-	      	<!-- use ng-submit to catch the form submission and use our Angular function -->
-	      	<form id="signup-form" ng-submit="processForm()">
-	          <!-- our nested state views will be injected here -->
-	          <div id="form-views" ui-view></div>
-	     	</form>
-	  		<button class="reset" ng-click="reset()">Reset</button>
-	  	</div>
+
+	    <p>Answer a few questions about your day, what you did and how you are feeling and you will get your very own unique soundtrack for your day based on your answers.</p>
+
+	    <form id="signup-form" ng-submit="processForm()">
+	          
+	      <div id="form-views" ui-view></div>
+	    </form>
+	    
+	 	</div>
 	</div>
 </div>

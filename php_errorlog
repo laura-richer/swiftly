@@ -1,0 +1,149 @@
+[04-Sep-2017 12:54:37 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: cURL transport error: 18 transfer closed with 247769 bytes remaining to read in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:150
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(908): SpotifyWebAPI\Request->api('GET', '/v1/users/spoti...', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(94): SpotifyWebAPI\SpotifyWebAPI->getUserPlaylistTracks('spotify', '37i9dQZF1DWZ0Oz...')
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(67): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 150
+[04-Sep-2017 12:59:02 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[04-Sep-2017 12:59:02 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(68): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[15-Sep-2017 14:38:13 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[15-Sep-2017 14:38:14 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(67): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[15-Sep-2017 14:52:52 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: The access token expired in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(926): SpotifyWebAPI\Request->api('GET', '/v1/me', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/session-info.php(19): SpotifyWebAPI\SpotifyWebAPI->me()
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(56): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[15-Sep-2017 14:53:25 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: The access token expired in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(926): SpotifyWebAPI\Request->api('GET', '/v1/me', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/session-info.php(19): SpotifyWebAPI\SpotifyWebAPI->me()
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(56): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[15-Sep-2017 15:10:00 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[15-Sep-2017 15:10:00 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(67): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[27-Sep-2017 08:09:14 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[27-Sep-2017 08:09:14 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(67): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[27-Sep-2017 08:09:37 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[27-Sep-2017 08:09:38 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(67): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[30-Oct-2017 14:18:54 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:18:54 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:18:56 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:18:56 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:18:58 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:18:58 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:23:35 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:23:35 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:23:54 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:23:54 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:26:33 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:26:33 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:26:50 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:26:50 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:28:32 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:28:32 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:28:51 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:28:51 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:29:26 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:29:26 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:29:43 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:29:43 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:31:17 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:31:17 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:31:52 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:31:52 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:02 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:02 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:06 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:06 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:07 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[30-Oct-2017 14:32:07 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(73): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[30-Oct-2017 14:32:08 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:08 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:27 CST6CDT] PHP Notice:  Undefined variable: tracksArr in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:32:27 CST6CDT] PHP Warning:  Invalid argument supplied for foreach() in /home/lauraric/public_html/swift-ly.co.uk/index.php on line 68
+[30-Oct-2017 14:38:16 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[30-Oct-2017 14:38:17 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(67): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[30-Oct-2017 14:38:34 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/lauraric/public_html/swift-ly.co.uk/includes/track-display.php on line 23
+[30-Oct-2017 14:39:14 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/lauraric/public_html/swift-ly.co.uk/includes/track-display.php on line 23
+[30-Oct-2017 14:39:16 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/lauraric/public_html/swift-ly.co.uk/includes/track-display.php on line 23
+[30-Oct-2017 14:41:56 CST6CDT] PHP Parse error:  syntax error, unexpected ',' in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 129
+[30-Oct-2017 14:41:56 CST6CDT] PHP Parse error:  syntax error, unexpected ',' in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 129
+[30-Oct-2017 14:42:58 CST6CDT] PHP Parse error:  syntax error, unexpected ':' in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 129
+[30-Oct-2017 14:43:02 CST6CDT] PHP Parse error:  syntax error, unexpected ':' in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 129
+[30-Oct-2017 14:43:03 CST6CDT] PHP Parse error:  syntax error, unexpected ':' in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 129
+[30-Oct-2017 14:45:32 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/lauraric/public_html/swift-ly.co.uk/includes/track-display.php on line 23
+[30-Oct-2017 14:45:34 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/lauraric/public_html/swift-ly.co.uk/includes/track-display.php on line 23
+[30-Oct-2017 15:24:06 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[30-Oct-2017 15:24:06 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(69): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167
+[13-Feb-2018 07:55:45 CST6CDT] PHP Notice:  Undefined offset: 0 in /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php on line 120
+[13-Feb-2018 07:55:45 CST6CDT] PHP Fatal error:  Uncaught SpotifyWebAPI\SpotifyWebAPIException: invalid id in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php:167
+Stack trace:
+#0 /home/lauraric/public_html/swift-ly.co.uk/src/Request.php(68): SpotifyWebAPI\Request->send('GET', 'https://api.spo...', '', Array)
+#1 /home/lauraric/public_html/swift-ly.co.uk/src/SpotifyWebAPI.php(753): SpotifyWebAPI\Request->api('GET', '/v1/tracks/', Array, Array)
+#2 /home/lauraric/public_html/swift-ly.co.uk/includes/track-generator.php(121): SpotifyWebAPI\SpotifyWebAPI->getTrack(NULL)
+#3 /home/lauraric/public_html/swift-ly.co.uk/index.php(69): include('/home/lauraric/...')
+#4 {main}
+  thrown in /home/lauraric/public_html/swift-ly.co.uk/src/Request.php on line 167

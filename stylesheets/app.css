@@ -10475,125 +10475,13 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
-/* numbered buttons */
-/* line 2, ../scss/_animations.scss */
-#status-buttons a {
-  color: #FFF;
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 10px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-/* line 3, ../scss/_animations.scss */
-#status-buttons a:hover {
-  text-decoration: none;
-}
-
-/* line 4, ../scss/_animations.scss */
-#status-buttons span {
-  background: #080808;
-  display: block;
-  height: 30px;
-  margin: 0 auto 10px;
-  padding-top: 5px;
-  width: 30px;
-  border-radius: 50%;
-}
-
-/* active buttons */
-/* line 8, ../scss/_animations.scss */
-#status-buttons a.active span {
-  background: #00BC8C;
-}
-
-/* ANIMATION STYLINGS
-============================================================================= */
-/* line 12, ../scss/_animations.scss */
-#signup-form {
-  min-height: 300px;
-}
-
-/* basic styling for entering and leaving */
-/* left and right added to ensure full width */
-/* line 16, ../scss/_animations.scss */
-#form-views.ng-enter,
-#form-views.ng-leave {
-  position: absolute;
-  left: 30px;
-  right: 30px;
-  transition: 0.5s all ease;
-  -moz-transition: 0.5s all ease;
-  -webkit-transition: 0.5s all ease;
-}
-
-/* enter animation */
-/* line 22, ../scss/_animations.scss */
-#form-views.ng-enter {
-  -webkit-animation: slideInRight 0.5s both ease;
-  -moz-animation: slideInRight 0.5s both ease;
-  animation: slideInRight 0.5s both ease;
-}
-
-/* leave animation */
-/* line 29, ../scss/_animations.scss */
-#form-views.ng-leave {
-  -webkit-animation: slideOutLeft 0.5s both ease;
-  -moz-animation: slideOutLeft 0.5s both ease;
-  animation: slideOutLeft 0.5s both ease;
-}
-
-/* ANIMATIONS
-============================================================================= */
-/* slide out to the left */
-@keyframes slideOutLeft {
-  to {
-    transform: translateX(-200%);
-  }
-}
-@-moz-keyframes slideOutLeft {
-  to {
-    -moz-transform: translateX(-200%);
-  }
-}
-@-webkit-keyframes slideOutLeft {
-  to {
-    -webkit-transform: translateX(-200%);
-  }
-}
-/* slide in from the right */
-@keyframes slideInRight {
-  from {
-    transform: translateX(200%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-@-moz-keyframes slideInRight {
-  from {
-    -moz-transform: translateX(200%);
-  }
-  to {
-    -moz-transform: translateX(0);
-  }
-}
-@-webkit-keyframes slideInRight {
-  from {
-    -webkit-transform: translateX(200%);
-  }
-  to {
-    -webkit-transform: translateX(0);
-  }
-}
 /* line 7, ../scss/app.scss */
 html {
   height: 100%;
-  position: relative;
+  position: r elative;
 }
 
-/* line 11, ../scss/app.scss */
+/* line 12, ../scss/app.scss */
 body {
   position: relative;
   background-color: #191515;
@@ -10601,7 +10489,7 @@ body {
   color: #ffffff;
 }
 
-/* line 18, ../scss/app.scss */
+/* line 19, ../scss/app.scss */
 h1 {
   color: #ffffff;
   margin: 0;
@@ -10609,27 +10497,32 @@ h1 {
   line-height: 44px;
 }
 
-/* line 25, ../scss/app.scss */
+/* line 26, ../scss/app.scss */
+h2 {
+  color: #ffffff;
+}
+
+/* line 30, ../scss/app.scss */
 p {
   font-size: 16px;
   line-height: 20px;
 }
 
-/* line 30, ../scss/app.scss */
+/* line 35, ../scss/app.scss */
 .full-height {
   position: relative;
   height: 100%;
   width: 100%;
 }
 
-/* line 35, ../scss/app.scss */
+/* line 41, ../scss/app.scss */
 .container {
   float: left;
   width: 100%;
   display: block;
 }
 
-/* line 42, ../scss/app.scss */
+/* line 48, ../scss/app.scss */
 header {
   position: relative;
   float: left;
@@ -10639,17 +10532,23 @@ header {
   background-color: #191515;
   z-index: 1000;
 }
-/* line 51, ../scss/app.scss */
+/* line 58, ../scss/app.scss */
 header .sp-prof p {
   margin: 0;
 }
-/* line 53, ../scss/app.scss */
+/* line 61, ../scss/app.scss */
 header .sp-prof p img {
   border-radius: 50%;
   margin-left: 20px;
 }
+@media screen and (max-width: 440px) {
+  /* line 57, ../scss/app.scss */
+  header .sp-prof {
+    float: left !important;
+  }
+}
 
-/* line 60, ../scss/app.scss */
+/* line 73, ../scss/app.scss */
 footer {
   background-color: #191515;
   width: 100%;
@@ -10657,74 +10556,72 @@ footer {
   height: 70px;
   padding-top: 10px;
 }
-/* line 66, ../scss/app.scss */
+/* line 80, ../scss/app.scss */
 footer p {
   font-size: 14px;
   line-height: 17px;
 }
-/* line 69, ../scss/app.scss */
+/* line 84, ../scss/app.scss */
 footer p a {
   color: #ffffff;
 }
-/* line 71, ../scss/app.scss */
+/* line 87, ../scss/app.scss */
 footer p a:hover {
   color: #2fd565;
 }
 
-/* line 78, ../scss/app.scss */
-button, .button {
+/* line 94, ../scss/app.scss */
+button,
+.button {
   background-color: #191515;
   color: #ffffff;
   border-radius: 50px;
   padding: 7px 30px;
 }
-/* line 83, ../scss/app.scss */
-button:hover, .button:hover {
+/* line 101, ../scss/app.scss */
+button:hover,
+.button:hover {
   background-color: #2fd565;
 }
 
-/* line 88, ../scss/app.scss */
+/* line 106, ../scss/app.scss */
 .form-wrapper {
   margin-top: -80px;
   padding-top: 80px;
-  background-color: #6333f3;
+  background-color: #7858f7;
   /* Fallback */
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3631fb), to(#9036ec));
-  background-image: -webkit-linear-gradient(top, #3631fb, #9036ec);
-  background-image: -moz-linear-gradient(top, #3631fb, #9036ec);
-  background-image: -ms-linear-gradient(top, #3631fb, #9036ec);
-  background-image: -o-linear-gradient(top, #3631fb, #9036ec);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3631fb', EndColorStr='#9036ec')";
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#475cf9), to(#a954f5));
+  background-image: -webkit-linear-gradient(top, #475cf9, #a954f5);
+  background-image: -moz-linear-gradient(top, #475cf9, #a954f5);
+  background-image: -ms-linear-gradient(top, #475cf9, #a954f5);
+  background-image: -o-linear-gradient(top, #475cf9, #a954f5);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#475cf9', EndColorStr='#a954f5')";
 }
-/* line 91, ../scss/app.scss */
+/* line 110, ../scss/app.scss */
 .form-wrapper .form-padding {
   padding: 50px 0 0;
 }
 @media screen and (min-width: 48.0625em) {
-  /* line 91, ../scss/app.scss */
+  /* line 110, ../scss/app.scss */
   .form-wrapper .form-padding {
     padding: 75px 0 0;
   }
 }
-/* line 97, ../scss/app.scss */
-.form-wrapper .form-padding #form-container form {
-  min-height: 380px;
+/* line 119, ../scss/app.scss */
+.form-wrapper .form-padding #form-container #form-views .block-height {
+  position: relative;
+  min-height: 320px;
   display: block;
 }
-/* line 101, ../scss/app.scss */
-.form-wrapper .form-padding #form-container #form-views {
-  min-height: 380px;
-  display: block;
-}
-/* line 104, ../scss/app.scss */
-.form-wrapper .form-padding #form-container #form-views > label {
+/* line 124, ../scss/app.scss */
+.form-wrapper .form-padding #form-container #form-views .block-height > label {
   position: relative;
   padding-top: 30px;
   margin-top: 30px;
   margin-bottom: 15px;
 }
-/* line 109, ../scss/app.scss */
-.form-wrapper .form-padding #form-container #form-views > label:before {
+/* line 130, ../scss/app.scss */
+.form-wrapper .form-padding #form-container #form-views .block-height > label:before {
   position: absolute;
   top: 0;
   width: 75px;
@@ -10734,15 +10631,15 @@ button:hover, .button:hover {
   display: block;
   left: -37px;
 }
-/* line 120, ../scss/app.scss */
-.form-wrapper .form-padding #form-container #form-views input {
+/* line 142, ../scss/app.scss */
+.form-wrapper .form-padding #form-container #form-views .block-height input {
   margin-bottom: 0;
 }
-/* line 124, ../scss/app.scss */
+/* line 148, ../scss/app.scss */
 .form-wrapper .form-padding #form-container li {
   padding-bottom: 10px;
 }
-/* line 127, ../scss/app.scss */
+/* line 152, ../scss/app.scss */
 .form-wrapper .form-padding #form-container .form-buttons {
   position: relative;
   padding-top: 30px;
@@ -10750,58 +10647,70 @@ button:hover, .button:hover {
   width: auto;
   display: inline-block;
 }
-/* line 133, ../scss/app.scss */
-.form-wrapper .form-padding #form-container .form-buttons:before {
-  position: absolute;
-  top: 0;
-  width: 75px;
-  height: 1px;
-  content: "";
-  background-color: #ffffff;
-  display: block;
-  left: -37px;
-}
-/* line 144, ../scss/app.scss */
-.form-wrapper .form-padding #form-container .reset {
-  top: -53px;
-  margin-left: 105px;
-}
 
-/* line 153, ../scss/app.scss */
+/* line 164, ../scss/app.scss */
 .track-item {
   background-color: #191515;
   display: block;
   margin-bottom: 15px;
 }
-/* line 157, ../scss/app.scss */
+/* line 169, ../scss/app.scss */
 .track-item img {
   float: left;
   display: inline-block;
 }
-/* line 161, ../scss/app.scss */
+/* line 174, ../scss/app.scss */
 .track-item .track-info {
   float: left;
   display: inline-block;
   padding: 15px 0 0 15px;
 }
-/* line 166, ../scss/app.scss */
+/* line 180, ../scss/app.scss */
 .track-item .track {
   width: 100%;
 }
-/* line 168, ../scss/app.scss */
+/* line 183, ../scss/app.scss */
 .track-item .track audio {
   width: 100%;
 }
 
-/* line 174, ../scss/app.scss */
+/* line 189, ../scss/app.scss */
 .generate-wrapper {
   margin-top: 50px;
 }
-/* line 176, ../scss/app.scss */
+/* line 192, ../scss/app.scss */
 .generate-wrapper h2 {
   color: #ffffff;
 }
-/* line 178, ../scss/app.scss */
+/* line 195, ../scss/app.scss */
 .generate-wrapper h2 i {
   margin-left: 10px;
+}
+
+/* line 201, ../scss/app.scss */
+.success {
+  text-align: center;
+}
+/* line 204, ../scss/app.scss */
+.success p {
+  margin-top: 40px;
+}
+/* line 208, ../scss/app.scss */
+.success .social-share {
+  margin-top: 20px;
+  margin-bottom: 30%;
+}
+/* line 212, ../scss/app.scss */
+.success .social-share li {
+  display: inline-block;
+  list-style: none;
+  margin: 0 10px;
+}
+/* line 217, ../scss/app.scss */
+.success .social-share li i {
+  font-size: 30px;
+}
+/* line 220, ../scss/app.scss */
+.success .social-share li i:hover {
+  color: #2fd565;
 }

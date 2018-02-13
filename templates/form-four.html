@@ -1,39 +1,78 @@
-<label>What is your hobby?</label>
-<ul class="form-group small-block-grid-3 medium-block-grid-4" ng-init="formData.four='sport'">
+<div class="block-height">
+  <label>What is your hobby?</label>
+
+  <ul 
+    class="form-group small-block-grid-3 medium-block-grid-4" 
+    ng-init="formData.four='sport'">
+
     <li class="radio">
-        <label>
-           <input type="radio" name="four" ng-model="formData.four" value="sport">
-           A Sport
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="four" 
+          ng-model="formData.four" 
+          value="sport">
+          A Sport
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="four" ng-model="formData.four" value="craft">
-            Something Crafty
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="four" 
+          ng-model="formData.four" 
+          value="craft">
+          Something Crafty
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="four" ng-model="formData.four" value="practical">
-            Something Practical
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="four" 
+          ng-model="formData.four" 
+          value="practical">
+          Something Practical
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="four" ng-model="formData.four" value="musical">
-            Musical
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="four" 
+          ng-model="formData.four" 
+          value="musical">
+          Musical
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="four" ng-model="formData.four" value="techy">
-            Techy
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="four" 
+          ng-model="formData.four" 
+          value="techy">
+          Techy
+      </label>
     </li>
-</ul>
+  </ul>
+</div>
+
 <div class="form-buttons form-group row">
-    <div class="small-12 columns right">
-        <a ui-sref="form.five" class="button">Next</a>
-        <button ng-click="reset()">Reset</button>
-    </div>
+  <div class="small-12 columns right">
+
+    <a 
+      ui-sref="form.five" 
+      class="button">Next</a>
+
+    <button 
+      ui-sref="form.one" 
+      class="reset" 
+      ng-click="reset()">Reset</button>
+
+  </div>
 </div>

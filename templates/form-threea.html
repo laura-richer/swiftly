@@ -1,54 +1,109 @@
-<label>At work I will be...</label>
-<ul class="form-group small-block-grid-3 medium-block-grid-4" ng-init="formData.threea='relaxed'">
+<div class="block-height">
+  <label>At work I will be...</label>
+
+  <ul 
+    class="form-group small-block-grid-3 medium-block-grid-4" 
+    ng-init="formData.threea='relaxed'">
+
     <li class="radio">
-        <label>
-           <input type="radio" name="threea" ng-model="formData.threea" value="relaxed">
-           Relaxed
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="relaxed">
+          Relaxed
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="motivated">
-            Motivated
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="motivated">
+          Motivated
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="excited">
-            Excited
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="excited">
+          Excited
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="stressed">
-            Stressed
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="stressed">
+          Stressed
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="bored">
-            Bored
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="bored">
+          Bored
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="angry">
-            Angry
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="angry">
+          Angry
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="busy">
-            Busy
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="busy">
+          Busy
+      </label>
     </li>
+
     <li class="radio">
-        <label>
-            <input type="radio" name="threea" ng-model="formData.threea" value="rushed">
-            Rushed
-        </label>
+      <label>
+        <input 
+          type="radio" 
+          name="threea" 
+          ng-model="formData.threea" 
+          value="rushed">
+          Rushed
+      </label>
     </li>
-</ul>
+  </ul>
+</div>
+
 <div class="form-buttons">
-    <a ui-sref="form.five" class="button">Next</a>
+
+    <a 
+      ui-sref="form.five" 
+      class="button">Next</a>
+
+    <button 
+      ui-sref="form.one" 
+      class="reset" 
+      ng-click="reset()">Reset</button>
+
 </div>
