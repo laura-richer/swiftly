@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from 'react';
+import { getToken, checkToken } from './utils/token.js';
+import * as config from './utils/vars.js';
 
-function App() {
+import Header from './components/Header.js';
+import './app.scss';
+
+function App(props) {
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const tokenValid = checkToken();
+
+    if (tokenValid) {
+      setToken(window.localStorage.getItem('token'));
+    } else {
+      setToken(getToken());
+    }
+  },[token]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header token={token} />
+      {!token &&
+        <a href={`${config.AUTH_ENDPOINT}?client_id=${config.CLIENT_ID}&redirect_uri=${config.REDIRECT_URI}&response_type=${config.RESPONSE_TYPE}`}>Login
+          to Spotify</a>
+      }
     </div>
   );
 }
