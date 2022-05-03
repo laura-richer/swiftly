@@ -7,21 +7,17 @@ import './app.scss';
 
 function App(props) {
   const [token, setToken] = useState('');
+  const tokenValid = checkToken(token);
 
   useEffect(() => {
-    const tokenValid = checkToken();
-
-    if (tokenValid) {
-      setToken(window.localStorage.getItem('token'));
-    } else {
-      setToken(getToken());
-    }
-  },[token]);
+    if (!tokenValid) setToken(getToken());
+    // setToken(getToken());
+  }, [token, tokenValid]);
 
   return (
     <div className="App">
       <Header token={token} />
-      {!token &&
+      {!tokenValid &&
         <a href={`${config.AUTH_ENDPOINT}?client_id=${config.CLIENT_ID}&redirect_uri=${config.REDIRECT_URI}&response_type=${config.RESPONSE_TYPE}`}>Login
           to Spotify</a>
       }

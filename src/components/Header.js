@@ -7,7 +7,7 @@ const Header = (props) => {
 
   useEffect(() => {
     if(token) {
-      fetchUserData().then(response => {
+      fetchUserData(token).then(response => {
         setUserData(response);
       }).catch(error => {
         console.log(error);
