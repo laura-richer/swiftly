@@ -1,0 +1,21 @@
+.header {
+  background-color: $black;
+  color: $white;
+  padding: 2rem;
+
+  &__container {
+    @include space-content;
+    max-width: 1200px;
+  }
+
+  &__user-data {
+    @include space-content;
+  }
+
+  &__image {
+    margin-left: 1rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+}

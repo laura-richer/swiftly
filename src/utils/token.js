@@ -1,26 +1,3 @@
-// export const checkToken = () => {
-//   const token = window.localStorage.getItem("token");
-//   const currentDateTime = new Date().getTime();
-//   const tokenExpires = new Date(window.localStorage.getItem("tokenExpires"));
-
-//   if (!token || !tokenExpires) return false;
-
-//   // if token is expired, refresh and set new token
-//   if (currentDateTime > tokenExpires) {
-//     fetchRefreshedToken().then(response => {
-//       console.log(response);
-//       // Get and set new token & return true
-
-//       return true;
-//     }).catch(error => {
-//       console.log(error);
-//     })
-//   }
-
-//   // If theres already a valid token, nothing to do, return true
-//   return true;
-// }
-
 export const checkToken = (token) => {
   const currentDateTime = new Date().getTime();
   const tokenExpires = new Date(window.localStorage.getItem("tokenExpires"));
@@ -38,7 +15,6 @@ export const getToken = () => {
 
     window.localStorage.setItem('tokenExpires', getExpiryTime(expiresIn));
     window.localStorage.setItem("token", token);
-    window.location.hash = '';
   };
 
   return;

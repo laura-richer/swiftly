@@ -1,0 +1,9 @@
+.form {
+  &__label {
+    font-size: $font-sm;
+  }
+
+  &__footer {
+    @include space-content;
+  }
+}

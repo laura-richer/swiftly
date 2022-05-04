@@ -1,0 +1,420 @@
+[
+  {
+    "id": 1,
+    "label": "I woke up today feeling...",
+    "choices": [
+      {
+        "id": 1,
+        "next_question": 2,
+        "label": "Happy",
+        "value": "indie_alt"
+      },
+      {
+        "id": 2,
+        "next_question": 2,
+        "label": "Motivated",
+        "value": "focus"
+      },
+      {
+        "id": 3,
+        "next_question": 2,
+        "label": "Excited",
+        "value": "workout"
+      },
+      {
+        "id": 4,
+        "next_question": 2,
+        "label": "Relaxed",
+        "value": "chill"
+      },
+      {
+        "id": 5,
+        "next_question": 2,
+        "label": "Sad",
+        "value": "blues"
+      },
+      {
+        "id": 6,
+        "next_question": 2,
+        "label": "Angry",
+        "value": "punk"
+      },
+      {
+        "id": 7,
+        "next_question": 2,
+        "label": "Stressed",
+        "value": "metal"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "label": "The weather was...",
+    "choices": [
+      {
+        "id": 1,
+        "next_question": 3,
+        "label": "Sunny",
+        "value": "reggae"
+      },
+      {
+        "id": 2,
+        "next_question": 3,
+        "label": "Crisp",
+        "value": "mood"
+      },
+      {
+        "id": 3,
+        "next_question": 3,
+        "label": "Raining",
+        "value": "blues"
+      },
+      {
+        "id": 4,
+        "next_question": 3,
+        "label": "Dark",
+        "value": "mood"
+      },
+      {
+        "id": 5,
+        "next_question": 3,
+        "label": "Cold",
+        "value": "mood"
+      },
+      {
+        "id": 6,
+        "next_question": 3,
+        "label": "Windy",
+        "value": "blues"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "label": "Today I am...",
+    "choices": [
+      {
+        "id": 1,
+        "next_question": 5,
+        "label": "Going to work",
+        "value": "focus"
+      },
+      {
+        "id": 2,
+        "next_question": 7,
+        "label": "Going to School",
+        "value": "focus"
+      },
+      {
+        "id": 3,
+        "next_question": 4,
+        "label": "Having a day off",
+        "value": "travel"
+      },
+      {
+        "id": 4,
+        "next_question": 4,
+        "label": "No work/school it’s the weekend!",
+        "value": "reggae"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "label": "This makes me...",
+    "choices": [
+    {
+      "id": 1,
+      "next_question": 6,
+      "label": "Happy",
+      "value": "indie_alt"
+    },
+    {
+      "id": 2,
+      "next_question": 6,
+      "label": "Motivated",
+      "value": "focus"
+    },
+    {
+      "id": 3,
+      "next_question": 6,
+      "label": "Excited",
+      "value": "workout"
+    },
+    {
+      "id": 4,
+      "next_question": 6,
+      "label": "Relaxed",
+      "value": "chill"
+    },
+    {
+      "id": 5,
+      "next_question": 6,
+      "label": "Sad",
+      "value": "blues"
+    },
+    {
+      "id": 6,
+      "next_question": 6,
+      "label": "Angry",
+      "value": "punk"
+    },
+    {
+      "id": 7,
+      "next_question": 6,
+      "label": "Stressed",
+      "value": "metal"
+    }]
+  },
+  {
+    "id": 5,
+    "label": "At work I will be...",
+    "choices": [
+    {
+      "id": 0,
+      "next_question": 6,
+      "label": "Relaxed",
+      "value": "chill"
+    },
+    {
+      "id": 1,
+      "next_question": 6,
+      "label": "Motivated",
+      "value": "focus"
+    },
+    {
+      "id": 2,
+      "next_question": 6,
+      "label": "Excited",
+      "value": "workout"
+    },
+    {
+      "id": 3,
+      "next_question": 6,
+      "label": "Stressed",
+      "value": "metal"
+    },
+    {
+      "id": 4,
+      "next_question": 6,
+      "label": "Bored",
+      "value": "mood"
+    },
+    {
+      "id": 5,
+      "next_question": 6,
+      "label": "Angry",
+      "value": "punk"
+    },
+    {
+      "id": 6,
+      "next_question": 6,
+      "label": "Busy",
+      "value": "rock"
+    },
+    {
+      "id": 7,
+      "next_question": 6,
+      "label": "Rushed",
+      "value": "metal"
+    }]
+  },
+  {
+    "id": 6,
+    "label": "With my day off I am going to...",
+    "choices": [
+    {
+      "id": 1,
+      "next_question": 7,
+      "label": "Relax",
+      "value": "chill"
+    },
+    {
+      "id": 2,
+      "next_question": 7,
+      "label": "Run Errands",
+      "value": "workout"
+    },
+    {
+      "id": 3,
+      "next_question": 8,
+      "label": "Enjoy a Hobby",
+      "value": "focus"
+    },
+    {
+      "id": 4,
+      "next_question": 7,
+      "label": "Exercise",
+      "value": "workout"
+    },
+    {
+      "id": 5,
+      "next_question": 7,
+      "label": "Do Housework/Chores",
+      "value": "blues"
+    }]
+  },
+  {
+    "id": 7,
+    "label": "This makes me...",
+    "choices": [
+    {
+      "id": 1,
+      "next_question": 9,
+      "label": "Happy",
+      "value": "indie_alt"
+    },
+    {
+      "id": 2,
+      "next_question": 9,
+      "label": "Motivated",
+      "value": "focus"
+    },
+    {
+      "id": 3,
+      "next_question": 9,
+      "label": "Excited",
+      "value": "workout"
+    },
+    {
+      "id": 4,
+      "next_question": 9,
+      "label": "Relaxed",
+      "value": "chill"
+    },
+    {
+      "id": 5,
+      "next_question": 9,
+      "label": "Sad",
+      "value": "blues"
+    },
+    {
+      "id": 6,
+      "next_question": 9,
+      "label": "Angry",
+      "value": "punk"
+    },
+    {
+      "id": 7,
+      "next_question": 9,
+      "label": "Stressed",
+      "value": "metal"
+    }]
+  },
+  {
+    "id": 8,
+    "label": "What is your hobby?",
+    "choices": [
+    {
+      "id": 1,
+      "next_question": 9,
+      "label": "A sport",
+      "value": "workout"
+    },
+    {
+      "id": 2,
+      "next_question": 9,
+      "label": "Something crafty",
+      "value": "focus"
+    },
+    {
+      "id": 3,
+      "next_question": 9,
+      "label": "Something practical",
+      "value": "rock"
+    },
+    {
+      "id": 4,
+      "next_question": 9,
+      "label": "Musical",
+      "value": "jazz"
+    },
+    {
+      "id": 5,
+      "next_question": 9,
+      "label": "Something creative",
+      "value": "focus"
+    },
+    {
+      "id": 6,
+      "next_question": 9,
+      "label": "Techy",
+      "value": "funk"
+    }]
+  },
+  {
+    "id": 9,
+    "label": "This evening I am going to...",
+    "choices": [
+    {
+      "id": 1,
+      "next_question": 10,
+      "label": "Relax",
+      "value": "chill"
+    },
+    {
+      "id": 2,
+      "next_question": 10,
+      "label": "See Friends",
+      "value": "pop"
+    },
+    {
+      "id": 3,
+      "next_question": 10,
+      "label": "Have Friends over for dinner",
+      "value": "dinner"
+    },
+    {
+      "id": 4,
+      "next_question": 10,
+      "label": "Go out for the evening",
+      "value": "dinner"
+    },
+    {
+      "id": 5,
+      "next_question": 10,
+      "label": "Go out for the night",
+      "value": "pop"
+    },
+    {
+      "id": 6,
+      "next_question": 10,
+      "label": "PARTY!",
+      "value": "edm_dance"
+    }]
+  },
+  {
+    "id": 10,
+    "label": "I'm ready to go to sleep, I feel...",
+    "choices": [
+    {
+      "id": 0,
+      "label": "Relaxed",
+      "value": "chill"
+    },
+    {
+      "id": 1,
+      "label": "Happy",
+      "value": "indie_alt"
+    },
+    {
+      "id": 2,
+      "label": "Tired",
+      "value": "sleep"
+    },
+    {
+      "id": 3,
+      "label": "Sad",
+      "value": "blues"
+    },
+    {
+      "id": 4,
+      "label": "Angry",
+      "value": "punk"
+    },
+    {
+      "id": 5,
+      "label": "Sleep? Its Friday/Saturday night, no time for sleep!",
+      "value": "edm_dance"
+    }]
+  }]
