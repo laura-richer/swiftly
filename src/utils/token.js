@@ -31,17 +31,17 @@ export const checkToken = (token) => {
 
 export const getToken = () => {
   const hash = window.location.hash;
-  let token = window.localStorage.getItem("token");
 
-  if (!token && hash) {
-    token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
+  if (hash) {
+    const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
     const expiresIn = hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1];
 
     window.localStorage.setItem('tokenExpires', getExpiryTime(expiresIn));
     window.localStorage.setItem("token", token);
+    window.location.hash = '';
   };
 
-  return token;
+  return;
 }
 
 export const getExpiryTime = (tokenExpires, date = new Date()) => {

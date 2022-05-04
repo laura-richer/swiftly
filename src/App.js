@@ -10,8 +10,10 @@ function App(props) {
   const tokenValid = checkToken(token);
 
   useEffect(() => {
-    if (!tokenValid) setToken(getToken());
-    // setToken(getToken());
+    if (!tokenValid) {
+      getToken();
+      setToken(window.localStorage.getItem('token'));
+    }
   }, [token, tokenValid]);
 
   return (
