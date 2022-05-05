@@ -171,49 +171,49 @@
     "label": "At work I will be...",
     "choices": [
     {
-      "id": 0,
+      "id": 1,
       "next_question": 6,
       "label": "Relaxed",
       "value": "chill"
     },
     {
-      "id": 1,
+      "id": 2,
       "next_question": 6,
       "label": "Motivated",
       "value": "focus"
     },
     {
-      "id": 2,
+      "id": 3,
       "next_question": 6,
       "label": "Excited",
       "value": "workout"
     },
     {
-      "id": 3,
+      "id": 4,
       "next_question": 6,
       "label": "Stressed",
       "value": "metal"
     },
     {
-      "id": 4,
+      "id": 5,
       "next_question": 6,
       "label": "Bored",
       "value": "mood"
     },
     {
-      "id": 5,
+      "id": 6,
       "next_question": 6,
       "label": "Angry",
       "value": "punk"
     },
     {
-      "id": 6,
+      "id": 7,
       "next_question": 6,
       "label": "Busy",
       "value": "rock"
     },
     {
-      "id": 7,
+      "id": 8,
       "next_question": 6,
       "label": "Rushed",
       "value": "metal"
@@ -388,32 +388,32 @@
     "label": "I'm ready to go to sleep, I feel...",
     "choices": [
     {
-      "id": 0,
+      "id": 1,
       "label": "Relaxed",
       "value": "chill"
     },
     {
-      "id": 1,
+      "id": 2,
       "label": "Happy",
       "value": "indie_alt"
     },
     {
-      "id": 2,
+      "id": 3,
       "label": "Tired",
       "value": "sleep"
     },
     {
-      "id": 3,
+      "id": 4,
       "label": "Sad",
       "value": "blues"
     },
     {
-      "id": 4,
+      "id": 5,
       "label": "Angry",
       "value": "punk"
     },
     {
-      "id": 5,
+      "id": 6,
       "label": "Sleep? Its Friday/Saturday night, no time for sleep!",
       "value": "edm_dance"
     }]
