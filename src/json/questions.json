@@ -11,7 +11,7 @@
       },
       {
         "id": 2,
-        "next_question": 2,
+        "next_question": 3,
         "label": "Motivated",
         "value": "focus"
       },

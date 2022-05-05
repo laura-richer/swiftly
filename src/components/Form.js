@@ -3,47 +3,55 @@ import questions from '../json/questions.json';
 
 import Button from '../atoms/Button.js';
 
-
-
 const Form = () => {
   const [questionId, setQuestionId] = useState(1);
+  const [question, setQuestion] = useState(questions[0]);
   const [choiceId, setChoiceId] = useState(1);
   const [nextQuestionId, setNextQuestionId] = useState();
 
-  let currentQuestion = questions.find(question => question.id === questionId);
-
-  const updateChoice = (choice) => {
-    setChoiceId(choice);
-    setNextQuestionId(getNextQuestionId(currentQuestion, choiceId));
+  const getQuestion = (questionId) => {
+    return questions.find(question => question.id === questionId);
   }
 
-  const getNextQuestionId = (currentQuestion, choiceId) => {
-    return currentQuestion.choices.find(choice => choice.id === choiceId).next_question;
+   const updateChoice = (choice) => {
+    setChoiceId(choice);
+  }
+
+  const getNextQuestionId = (question, choiceId) => {
+    return question.choices.find(choice => choice.id === choiceId).next_question;
   }
 
   const handleNext = (nextQuestionId) => {
-    console.log(nextQuestionId);
+    console.log('testing');
     setQuestionId(nextQuestionId);
+    // store question id to local storage
   }
 
-  // const updateQuestion = (questionId) => {
-  //   currentQuestion = questions.find(question => question.id === questionId);
-  // }
+  useEffect(() => {
+    // if local storage for question id exists set as current question id & current question
+    setQuestion(getQuestion(questionId));
+    setChoiceId(1);
+    setNextQuestionId(getNextQuestionId(question, choiceId));
+
+    console.log('updated question id')
+    console.log(questionId, 'question id');
+    console.log(choiceId, 'choice id');
+    console.log(nextQuestionId, 'next question id')
+  }, [questionId]);
 
   useEffect(() => {
-    updateChoice(questionId);
-  }, [questionId, nextQuestionId, choiceId]);
-
-  // TODO click on radio button store next question id
-  // click next - go to next question & save choice value, update currentQuestionId, reset currentChoiceIndex to 0
-  // click reset - reset everything and go back to first page
+    setNextQuestionId(getNextQuestionId(question, choiceId));
+    console.log('updated choice');
+    console.log(nextQuestionId, 'next question id');
+  }, [choiceId]);
 
   return (
     <div>
+      {choiceId}
       <form className="form">
-        <label className="form__label">{currentQuestion.label}</label>
+        <label className="form__label">{question.label}</label>
         <fieldset id={`question-${questionId}`}>
-          {currentQuestion.choices.map((choice, index) =>
+          {question.choices.map((choice, index) =>
             <div key={choice.id}>
               <label>{choice.label}</label>
               <input
@@ -52,7 +60,7 @@ const Form = () => {
                 value={choice.value}
                 name={`question-${questionId}`}
                 defaultChecked={choiceId === index + 1}
-                onChange={() => updateChoice(index + 1)}
+                onChange={() => setChoiceId(index + 1)}
               />
             </div>
           )}

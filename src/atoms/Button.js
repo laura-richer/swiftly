@@ -1,5 +1,5 @@
-const Button = ({type, text}) => {
-  return <button type={type} >{text}</button>
+const Button = ({type, text, onClick}) => {
+  return <button type={type} onClick={onClick} >{text}</button>
 }
 Button.defaultProps = {
   text: 'Click me',

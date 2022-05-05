@@ -19,7 +19,7 @@ function App(props) {
       setToken(window.localStorage.getItem('token'));
       navigate('');
     }
-  }, [token, tokenValid, navigate]);
+  }, [tokenValid, navigate]);
 
   return (
     <div className="main">
