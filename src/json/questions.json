@@ -172,49 +172,49 @@
     "choices": [
     {
       "id": 1,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Relaxed",
       "value": "chill"
     },
     {
       "id": 2,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Motivated",
       "value": "focus"
     },
     {
       "id": 3,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Excited",
       "value": "workout"
     },
     {
       "id": 4,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Stressed",
       "value": "metal"
     },
     {
       "id": 5,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Bored",
       "value": "mood"
     },
     {
       "id": 6,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Angry",
       "value": "punk"
     },
     {
       "id": 7,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Busy",
       "value": "rock"
     },
     {
       "id": 8,
-      "next_question": 6,
+      "next_question": 9,
       "label": "Rushed",
       "value": "metal"
     }]

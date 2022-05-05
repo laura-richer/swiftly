@@ -1,6 +1,8 @@
+import { getItem, setItem } from './local-storage.js';
+
 export const checkToken = (token) => {
   const currentDateTime = new Date().getTime();
-  const tokenExpires = new Date(window.localStorage.getItem("tokenExpires"));
+  const tokenExpires = new Date(getItem('tokenExpires'));
   const tokenExpired = currentDateTime > tokenExpires;
 
   return !token || tokenExpired ? false : true
@@ -13,8 +15,8 @@ export const getToken = () => {
     const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
     const expiresIn = hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1];
 
-    window.localStorage.setItem('tokenExpires', getExpiryTime(expiresIn));
-    window.localStorage.setItem("token", token);
+    setItem('tokenExpires', getExpiryTime(expiresIn));
+    setItem('token', token);
   };
 
   return;

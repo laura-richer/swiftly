@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getToken, checkToken } from './utils/token.js';
+// import { getItem } from './utils/local-storage.js';
 import { LOGIN_URL } from './utils/vars.js';
 
 import Header from './components/Header.js';
@@ -17,6 +18,7 @@ function App(props) {
     if (!tokenValid) {
       getToken();
       setToken(window.localStorage.getItem('token'));
+      // setToken(getItem('token'));
       navigate('');
     }
   }, [tokenValid, navigate]);

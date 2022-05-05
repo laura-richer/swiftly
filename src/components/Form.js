@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import * as ls from '../utils/local-storage.js';
 import questions from '../json/questions.json';
 
 import Button from '../atoms/Button.js';
@@ -12,27 +13,46 @@ const getNextQuestionId = (question, choiceId) => {
 }
 
 const Form = () => {
-  const [questionId, setQuestionId] = useState(1);
-  const [choiceId, setChoiceId] = useState(1);
+  const currentQuestionId = Number(ls.getItem('currentQuestionId'));
+  const currentChoiceId = Number(ls.getItem('currentChoiceId'));
 
+  const [questionId, setQuestionId] = useState(currentQuestionId || 1);
+  const [choiceId, setChoiceId] = useState(currentChoiceId || 1);
   let question = getQuestion(questionId);
-  let nextQuestionId;
+  let nextQuestionId = getNextQuestionId(question, choiceId);
 
-  const handleNext = (nextQuestionId) => {
-    setQuestionId(nextQuestionId);
-    setChoiceId(1);
-    // store question id to local storage
+  const handleNext = (id) => {
+    // Update question
+    setQuestionId(id);
+    question = getQuestion(id);
+
+    // Set initial choice id
+    updateChoice(1);
+
+    // Save progress
+    ls.setItem('currentQuestionId', id);
   }
 
-  useEffect(() => {
-    // if local storage for question id exists set as current question id & current question
-    question = getQuestion(questionId);
-    nextQuestionId = getNextQuestionId(question, choiceId);
-  }, [questionId]);
+  const updateChoice = (id) => {
+    // Update choice id and get next question id
+    setChoiceId(id);
+    nextQuestionId = getNextQuestionId(question, id);
 
-  useEffect(() => {
-    nextQuestionId = getNextQuestionId(question, choiceId);
-  }, [choiceId]);
+    // Save current choice
+    ls.setItem('currentChoiceId', id);
+  }
+
+  const handleReset = () => {
+    // Remove progress
+    ls.removeItem('currentQuestionId');
+    ls.removeItem('currentChoiceId');
+
+    // TODO clear saved answers
+
+    // Reset question & to initial values
+    setQuestionId(1);
+    setChoiceId(1);
+  }
 
   return (
     <div>
@@ -48,15 +68,15 @@ const Form = () => {
                 value={choice.value}
                 name={`question-${questionId}`}
                 checked={choiceId === choice.id}
-                onChange={() => setChoiceId(choice.id)}
+                onChange={() => updateChoice(choice.id)}
               />
             </div>
           )}
         </fieldset>
       </form>
       <div className="form__footer">
-        <Button text="reset"/>
-        <Button type="button" onClick={() => handleNext(nextQuestionId)} text="next"/>
+        <Button type="button" text="reset" onClick={() => handleReset()}/>
+        <Button type="button" text="next" onClick={() => handleNext(nextQuestionId)}/>
       </div>
     </div>
   );
