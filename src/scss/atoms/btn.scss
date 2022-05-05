@@ -1,0 +1,16 @@
+.btn {
+  color: $white;
+  background-color: $black;
+  padding: 1rem 2rem;
+  font-size: $font-xs;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}

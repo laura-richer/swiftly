@@ -2,29 +2,10 @@
 @import './global/__functions';
 @import './global/_typography';
 
-@import './atoms/button';
-
-@import './components/header';
+@import './atoms/btn';
 @import './components/form';
+@import './components/header';
+@import './components/main';
+@import './components/quiz';
 
 html { font-size: 10px; }
-
-.main {
-  font-family: 'Circular';
-  height: 100vh;
-  background: rgb(105,117,221);
-  background: linear-gradient(45deg, rgba(105,117,221,1) 0%, rgba(115,85,176,1) 100%);
-
-  &__container {
-    @include center-content;
-    flex-direction: column;
-    padding: 4rem 2rem;
-    max-width: 768px;
-    margin: 0 auto;
-  }
-
-  &__content-wrapper {
-    width: 100%;
-    margin-top: 5rem;
-  }
-}

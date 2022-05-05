@@ -1,9 +1,9 @@
-export const setItem = (property, value) => {
-  window.localStorage.setItem(property, value);
+export const getItem = (property) => {
+  return window.localStorage.getItem(property);
 }
 
-export const getItem = (property) => {
-  window.localStorage.getItem(property);
+export const setItem = (property, value) => {
+  window.localStorage.setItem(property, value);
 }
 
 export const removeItem = (property) => {
