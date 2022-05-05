@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getToken, checkToken } from './utils/token.js';
-// import { getItem } from './utils/local-storage.js';
+import { getItem } from './utils/local-storage.js';
 import { LOGIN_URL } from './utils/vars.js';
 
 import Header from './components/Header.js';
@@ -17,8 +17,7 @@ function App(props) {
   useEffect(() => {
     if (!tokenValid) {
       getToken();
-      setToken(window.localStorage.getItem('token'));
-      // setToken(getItem('token'));
+      setToken(getItem('token'));
       navigate('');
     }
   }, [tokenValid, navigate]);
@@ -28,11 +27,13 @@ function App(props) {
       <Header token={token} tokenValid={tokenValid} />
 
       <div className="main__container">
-        <p>Taylor your day swiftly by answering some questions to create a unique soundtrack to match your mood for the day.</p>
+        <p>
+          Taylor your daily soundtrack by swiftly answering some questions to create a unique playlist to match your mood and activities planned for the day.
+        </p>
 
         <div className="main__content-wrapper">
           {!tokenValid ?
-            <a className="button" href={LOGIN_URL}>
+            <a className="btn" href={LOGIN_URL}>
               Login to Spotify
             </a>
           : <Form /> }
