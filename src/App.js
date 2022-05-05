@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { getToken, checkToken } from './utils/token.js';
 import { getItem } from './utils/local-storage.js';
 import { LOGIN_URL } from './utils/vars.js';
 
-import Header from './components/Header.js';
-import Form from './components/Form.js';
+import MainContainer from './components/MainContainer.js';
+import Quiz from './components/Quiz.js';
+import GenerateResults from './components/GenerateResults.js';
 
 import './scss/app.scss';
 
-function App(props) {
+function App() {
   const [token, setToken] = useState('');
   const tokenValid = checkToken(token);
   const navigate = useNavigate();
@@ -23,23 +24,17 @@ function App(props) {
   }, [tokenValid, navigate]);
 
   return (
-    <div className="main">
-      <Header token={token} tokenValid={tokenValid} />
-
-      <div className="main__container">
-        <p>
-          Taylor your daily soundtrack by swiftly answering some questions to create a unique playlist to match your mood and activities planned for the day.
-        </p>
-
-        <div className="main__content-wrapper">
-          {!tokenValid ?
-            <a className="btn" href={LOGIN_URL}>
-              Login to Spotify
-            </a>
-          : <Form /> }
-        </div>
-      </div>
-    </div>
+    <MainContainer token={token} tokenValid={tokenValid}>
+      {!tokenValid ?
+        <a className="btn" href={LOGIN_URL}>
+          Login to Spotify
+        </a>
+      : <Routes>
+          <Route path="" element={<Quiz />} />
+          <Route path="/get-soundtrack" element={<GenerateResults />} />
+        </Routes>
+      }
+    </MainContainer>
   );
 }
 
