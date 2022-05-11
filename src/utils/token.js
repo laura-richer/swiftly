@@ -1,25 +1,25 @@
-import { getItem, setItem } from './local-storage.js';
+import { setItem } from './local-storage.js';
 
-export const checkToken = (token) => {
+export const checkToken = (token, tokenExpires) => {
   const currentDateTime = new Date().getTime();
-  const tokenExpires = new Date(getItem('tokenExpires'));
-  const tokenExpired = currentDateTime > tokenExpires;
+  const tokenExpiresDate = new Date(tokenExpires);
+  const tokenExpired = currentDateTime > tokenExpiresDate;
 
-  return !token || tokenExpired ? false : true
+  return token && !tokenExpired ? true : false;
 }
 
 export const getToken = () => {
-  const hash = window.location.hash;
+  const hash = window.location?.hash;
 
-  if (hash) {
-    const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
-    const expiresIn = hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1];
+  if (!hash) return;
 
-    setItem('tokenExpires', getExpiryTime(expiresIn));
-    setItem('token', token);
-  };
+  const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
+  const expiresIn = hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1];
+  console.log(token);
+  setItem('tokenExpires', getExpiryTime(expiresIn));
+  setItem('token', token);
 
-  return;
+  return token;
 }
 
 export const getExpiryTime = (tokenExpires, date = new Date()) => {

@@ -17,14 +17,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
+  },
+  "jest": {
+    "globals": {
+      "window": {}
+    }
   },
   "browserslist": {
     "production": [
@@ -37,5 +41,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.17.9",
+    "babel-jest": "^28.1.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^28.1.0"
   }
 }

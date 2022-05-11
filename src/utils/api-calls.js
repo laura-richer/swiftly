@@ -1,17 +1,5 @@
 import axios from 'axios';
-
-// export const fetchAccessToken = async (code) => {
-//   const { data } = await axios.post('https://accounts.spotify.com/api/token',
-//     serialize({
-//       grant_type: 'authorization_code',
-//       code: code,
-//       redirect_uri: config.REDIRECT_URI
-//     }), {
-//       headers: tokenHeaders,
-//     });
-
-//   return data;
-// }
+import { API_ENDPOINT } from './vars.js';
 
 export const fetchUserData = async (token) => {
   const { data } = await axios.get('https://api.spotify.com/v1/me', {
@@ -23,12 +11,32 @@ export const fetchUserData = async (token) => {
   return data;
 }
 
-const serialize = function(obj) {
-  var str = [];
-  for (var p in obj) {
-      if (obj.hasOwnProperty(p)) {
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-      }
-  }
-  return str.join("&");
+export const fetchCategoryPlaylists = async (token, category) => {
+  const { data } = await axios.get(`${API_ENDPOINT}/browse/categories/${category}/playlists?limit=50`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return data;
 }
+
+export const fetchPlaylist = async (token, playlist) => {
+  const { data } = await axios.get(playlist, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return data;
+}
+
+// const serialize = function(obj) {
+//   var str = [];
+//   for (var p in obj) {
+//       if (obj.hasOwnProperty(p)) {
+//           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+//       }
+//   }
+//   return str.join("&");
+// }
