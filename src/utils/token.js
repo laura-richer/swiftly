@@ -15,7 +15,6 @@ export const getToken = () => {
 
   const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
   const expiresIn = hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1];
-  console.log(token);
   setItem('tokenExpires', getExpiryTime(expiresIn));
   setItem('token', token);
 

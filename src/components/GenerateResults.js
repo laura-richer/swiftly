@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { fetchCategoryPlaylists, fetchPlaylist } from '../utils/api-calls.js';
 import { getItem } from '../utils/local-storage.js';
 
@@ -17,7 +17,8 @@ const getPlaylists = async (token, category) =>  {
 const getTracks = async (token, playlist) => {
   const response = await fetchPlaylist(token, playlist);
   const { items } = response;
-  return randomPick(items).track;
+  const popularTracks = items.filter(item => item.track?.popularity > 50);
+  return randomPick(popularTracks).track;
 }
 
 const randomPick = (items) => {
@@ -26,39 +27,44 @@ const randomPick = (items) => {
 
 const GenerateResults = ({token}) => {
   const categories = JSON.parse(getItem('answers'));
-  const [playlistData, setPlaylistData] = useState();
   const [trackData, setTrackData] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
   const playlists = [];
   const tracks = [];
 
-  // Get playlists for each category
+  // Get playlist for each category
   categories.forEach(category => {
     playlists.push(getPlaylists(token, category));
   });
 
-  useEffect(() => {
-    Promise.all(playlists).then(response => {
-      setPlaylistData(response);
-    }).catch(error => console.log(`Error in promises ${error}`));
-  }, []);
+  Promise.all(playlists).then(response => {
+    const playlistData = response;
 
-  useEffect(() => {
+    // Get track from each playlist
     playlistData?.forEach(playlist => {
       tracks.push(getTracks(token, playlist));
     });
 
-    // setTrackData(tracks);
-  }, [playlistData]);
-
-  useEffect(() => {
     Promise.all(tracks).then(response => {
-      console.log(response);
-    }).catch(error => console.log(`Error in promises ${error}`));
-  }, [tracks]);
+      setTrackData(response);
+    }).then(() => {
+      setIsLoaded(true);
+    }).catch(error => console.log(`Error in Tracks ${error}`));
+  }).catch(error => console.log(`Error in Playlists ${error}`));
 
-  return <p>get soundtrack
+  return (
+    <div>
+      {isLoaded ?
+        trackData?.map((track, index) =>
+          <div key={track.id}>
+            <p>{track.id}</p>
+          </div>
+        )
+        : <p>loading</p>
+      }
 
-  </p>;
+    </div>
+  )
 }
 
 export default GenerateResults;
