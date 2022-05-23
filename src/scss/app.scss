@@ -2,10 +2,12 @@
 @import './global/__functions';
 @import './global/_typography';
 
+@import './components/audio-player';
 @import './atoms/btn';
 @import './components/form';
 @import './components/header';
 @import './components/main';
 @import './components/quiz';
+@import './components/results-container';
 
 html { font-size: 10px; }
