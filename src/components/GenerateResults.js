@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchCategoryPlaylists, fetchPlaylist } from '../utils/api-calls.js';
+import { fetchCategoryPlaylists, fetchPlaylist, savePlaylist } from '../utils/api-calls.js';
 import { getItem } from '../utils/local-storage.js';
 
 import AudioPlayer from '../atoms/AudioPlayer.js';
@@ -14,7 +14,7 @@ const getPlaylists = async (token, category) =>  {
   const playlist = randomPick(items);
   const { tracks : { href }} = playlist;
 
-  return href || undefined;
+  return href;
 }
 
 const getTracks = async (token, playlist) => {
@@ -55,7 +55,9 @@ const GenerateResults = ({token}) => {
   });
 
   const handleSavePlaylist = () => {
-    console.log('save')
+    savePlaylist(token).then(response => {
+      console.log(response);
+    })
   }
 
   const handleReset = () => {
@@ -63,7 +65,9 @@ const GenerateResults = ({token}) => {
   }
 
   useEffect(() => {
-    if (trackData) initEventListners();
+    if (trackData) {
+      initEventListners();
+    };
 
     if (!trackData) {
       Promise.all(playlists).then(response => {
@@ -88,14 +92,13 @@ const GenerateResults = ({token}) => {
       {isLoaded &&
         <div className="results-container">
           <div>
+            <Button text="Save Playlist" onClick={handleSavePlaylist}/>
+            <Button btnStyle="secondary" text="Reset" onClick={handleReset}/>
+          </div>
+          <div className="results-container__list">
             {trackData?.map((track, index) =>
               <AudioPlayer key={track.id} track={track} />
             )}
-          </div>
-          <div>
-            <Button text="Save Playlist" onClick={handleSavePlaylist}/>
-            <Button btnStyle="secondary" text="Reset" onClick={handleReset}/>
-
           </div>
         </div>
       }

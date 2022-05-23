@@ -7,13 +7,13 @@
   &__container {
     @include center-content;
     flex-direction: column;
-    padding: 4rem 2rem;
+    padding: $spacer * 6 $spacer * 2;
     max-width: 768px;
     margin: 0 auto;
   }
 
   &__content-wrapper {
     width: 100%;
-    margin-top: 5rem;
+    margin-top: $spacer * 5;
   }
 }

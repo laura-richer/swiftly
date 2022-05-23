@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_ENDPOINT } from './vars.js';
 
 export const fetchUserData = async (token) => {
-  const { data } = await axios.get('https://api.spotify.com/v1/me', {
+  const { data } = await axios.get(`${API_ENDPOINT}/me`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -31,12 +31,18 @@ export const fetchPlaylist = async (token, playlist) => {
   return data;
 }
 
-// const serialize = function(obj) {
-//   var str = [];
-//   for (var p in obj) {
-//       if (obj.hasOwnProperty(p)) {
-//           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-//       }
-//   }
-//   return str.join("&");
-// }
+export const savePlaylist = async (token, playlist, userId) => {
+  console.log(new Date());
+  const { data } = await axios.post(`${API_ENDPOINT}/users/1112152777/playlists`, {
+    name: `SwiftLY Daily soundtrack - ${new Date()}`,
+    description: 'New playlist description',
+    public: false
+
+  }, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return data;
+}
