@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchCategoryPlaylists, fetchPlaylist } from '../utils/api-calls.js';
 import { getItem } from '../utils/local-storage.js';
 
@@ -17,7 +17,8 @@ const getPlaylists = async (token, category) =>  {
 const getTracks = async (token, playlist) => {
   const response = await fetchPlaylist(token, playlist);
   const { items } = response;
-  const popularTracks = items.filter(item => item.track?.popularity > 50);
+  const popularTracks = items.filter(item => item.track?.popularity > 40);
+
   return randomPick(popularTracks).track;
 }
 
@@ -37,20 +38,27 @@ const GenerateResults = ({token}) => {
     playlists.push(getPlaylists(token, category));
   });
 
-  Promise.all(playlists).then(response => {
-    const playlistData = response;
+  useEffect(() => {
+    if (!trackData) {
+      Promise.all(playlists).then(response => {
+        const playlistData = response;
 
-    // Get track from each playlist
-    playlistData?.forEach(playlist => {
-      tracks.push(getTracks(token, playlist));
-    });
+        // Get track from each playlist
+        playlistData?.forEach(playlist => {
+          tracks.push(getTracks(token, playlist));
+        });
 
-    Promise.all(tracks).then(response => {
-      setTrackData(response);
-    }).then(() => {
-      setIsLoaded(true);
-    }).catch(error => console.log(`Error in Tracks ${error}`));
-  }).catch(error => console.log(`Error in Playlists ${error}`));
+        Promise.all(tracks).then(response => {
+          console.log(response);
+          setTrackData(response);
+        }).then(() => {
+          setIsLoaded(true);
+        }).catch(error => console.log(`Error in Tracks ${error}`));
+      }).catch(error => console.log(`Error in Playlists ${error}`));
+
+    };
+  }, [playlists]);
+
 
   return (
     <div>
@@ -58,6 +66,9 @@ const GenerateResults = ({token}) => {
         trackData?.map((track, index) =>
           <div key={track.id}>
             <p>{track.id}</p>
+            <p>{track.name}</p>
+            <p>{track.artists[0].name}</p>
+            <p>{track.preview_url}</p>
           </div>
         )
         : <p>loading</p>
