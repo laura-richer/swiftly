@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { fetchCategoryPlaylists, fetchPlaylist, savePlaylist } from '../utils/api-calls.js';
-import { getItem } from '../utils/local-storage.js';
+import { getItem, setItem, resetProgress } from '../utils/local-storage.js';
 
 import AudioPlayer from '../atoms/AudioPlayer.js';
 import Button from '../atoms/Button.js';
@@ -14,6 +15,7 @@ const getPlaylists = async (token, category) =>  {
   const playlist = randomPick(items);
   const { tracks : { href }} = playlist;
 
+  // TODO account for empty playlist
   return href;
 }
 
@@ -22,6 +24,7 @@ const getTracks = async (token, playlist) => {
   const { items } = response;
   const popularTracks = items.filter(item => item.track?.popularity > 40);
 
+  // TODO account for empty track
   return randomPick(popularTracks).track;
 }
 
@@ -43,28 +46,40 @@ const initEventListners = () => {
 }
 
 const GenerateResults = ({token}) => {
+  const navigate = useNavigate();
+
+  const userId = JSON.parse(getItem('userData')).id;
   const categories = JSON.parse(getItem('answers'));
-  const [trackData, setTrackData] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const playlists = [];
   const tracks = [];
+
+  const [trackData, setTrackData] = useState();
+  const [trackURIs, setTrackURIs] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Get a random playlist for each category
   categories.forEach(category => {
     playlists.push(getPlaylists(token, category));
   });
 
-  const handleSavePlaylist = () => {
-    savePlaylist(token).then(response => {
-      console.log(response);
-    })
+  const handleSavePlaylist = (trackURIs) => {
+    savePlaylist(token, userId, trackURIs).then(response => {
+      setItem('playlist', JSON.stringify(response));
+      navigate('/your-playlist');
+    }).catch(error => {
+      // TODO error handling
+      console.log(error);
+    });
   }
 
   const handleReset = () => {
-    console.log('reset');
+    resetProgress();
+    navigate('/');
   }
 
   useEffect(() => {
+    // TODO dont regenerate playlist on refresh. Save to local storage and check first
     if (trackData) {
       initEventListners();
     };
@@ -79,6 +94,8 @@ const GenerateResults = ({token}) => {
         });
 
         Promise.all(tracks).then(response => {
+          // TODO does this need to be state???
+          setTrackURIs(response.map(({ uri }) => uri));
           setTrackData(response);
         }).then(() => {
           setIsLoaded(true);
@@ -92,7 +109,7 @@ const GenerateResults = ({token}) => {
       {isLoaded &&
         <div className="results-container">
           <div>
-            <Button text="Save Playlist" onClick={handleSavePlaylist}/>
+            <Button text="Save Playlist" onClick={() => handleSavePlaylist(trackURIs)}/>
             <Button btnStyle="secondary" text="Reset" onClick={handleReset}/>
           </div>
           <div className="results-container__list">

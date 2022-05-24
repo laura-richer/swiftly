@@ -31,14 +31,35 @@ export const fetchPlaylist = async (token, playlist) => {
   return data;
 }
 
-export const savePlaylist = async (token, playlist, userId) => {
-  console.log(new Date());
-  const { data } = await axios.post(`${API_ENDPOINT}/users/1112152777/playlists`, {
-    name: `SwiftLY Daily soundtrack - ${new Date()}`,
-    description: 'New playlist description',
-    public: false
+export const savePlaylist = async (token, userId, tracks) => {
+  const newPlaylist = await createPlaylist(token, userId);
+  await addTracksToPlaylist(token, newPlaylist.id, tracks);
+  return newPlaylist;
+}
 
-  }, {
+const createPlaylist = async (token, userId) => {
+  const requestBody = {
+    name: `SwiftLY Daily soundtrack - ${new Date().toDateString()}`,
+    public: false,
+  };
+
+  const { data } = await axios.post(`${API_ENDPOINT}/users/${userId}/playlists`, requestBody, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return data;
+}
+
+const addTracksToPlaylist = async (token, playlistId, tracks) => {
+  const requestBody = {
+    uris: [
+      ...tracks
+    ],
+  }
+
+  const { data } = await axios.post(`${API_ENDPOINT}/playlists/${playlistId}/tracks`, requestBody, {
     headers: {
       Authorization: `Bearer ${token}`
     }

@@ -62,10 +62,7 @@ const Quiz = () => {
   }
 
   const handleReset = () => {
-    // Reset progress
-    ls.removeItem('currentQuestionId');
-    ls.removeItem('currentChoiceId');
-    ls.removeItem('answers');
+    ls.resetProgress();
 
     // Reset question & to initial values
     setQuestionId(1);

@@ -1,9 +1,9 @@
 import Header from './Header.js';
 
-const MainContainer = ({token, tokenValid, children}) => {
+const MainContainer = ({children}) => {
   return (
     <div className="main">
-      <Header token={token} tokenValid={tokenValid} />
+      <Header />
 
       <div className="main__container">
         <p>

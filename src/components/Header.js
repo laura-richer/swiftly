@@ -1,22 +1,27 @@
-import {useEffect, useState} from 'react';
-import { fetchUserData } from '../utils/api-calls.js';
+import { useEffect, useState } from 'react';
+import { getItem } from '../utils/local-storage.js';
 
 import ghost from '../assets/images/ghost.png';
 
-const Header = ({token, tokenValid}) => {
-  const [name, setName] = useState('Stranger');
-  const [image, setImage] = useState(ghost);
+const getUserData = async () => {
+  console.log('testng');
+  const data = await getItem('userData');
+  return data;
+}
+
+const Header = () => {
+  // TODO fix this!
+  const userData = JSON.parse(getItem('userData'));
+  const [name, setName] = useState(userData?.display_name || 'Stranger');
+  const [image, setImage] = useState(userData?.images[0].url || ghost);
 
   useEffect(() => {
-    if(token && tokenValid) {
-      fetchUserData(token).then(response => {
-        setName(response.display_name);
-        setImage(response.images?.[0].url);
-      }).catch(error => {
-        console.log(error);
+    if (!userData) {
+      getUserData().then(response => {
+        console.log(response);
       });
     }
-  }, [token, tokenValid]);
+  }, [userData])
 
   return (
     <header className="header">
