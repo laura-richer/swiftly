@@ -1,0 +1,20 @@
+.quiz {
+  width: 100%;
+  max-width: 380px;
+
+  @include media('sm') {
+    margin: 0 auto;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: $spacer * 5;
+
+    @include media('md') {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: $spacer;
+    }
+  }
+}

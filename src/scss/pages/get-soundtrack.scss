@@ -1,0 +1,28 @@
+.get-soundtrack {
+  @include flex-column;
+
+  @include media('lg') {
+    flex-direction: row-reverse;
+    height: 100%;
+  }
+
+  &__ctas {
+    @include space-content;
+    margin-bottom: $spacer * 2;
+
+    @include media('lg') {
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+  }
+
+  &__list {
+    flex-grow: 1;
+
+    @include media('lg') {
+      // TODO sort spacing at bottom of playlist
+      overflow: scroll;
+    }
+  }
+}

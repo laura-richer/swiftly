@@ -1,9 +1,20 @@
 // Colors
 $white: #ffffff;
 $black: #000000;
+$lilac: #6975DD;
+$purple: #7355B0;
+$lilacRgb: rgba(105,117,221,1);
+$purpleRgb: rgba(115,85,176,1);
+$gradient: linear-gradient(45deg, $lilacRgb 0%, $purpleRgb 100%);
 
 $font-lg: 4.5rem;
 $font-sm: 1.6rem;
 $font-xs: 1.4rem;
 
 $spacer: 1rem;
+
+$breakpoints: (
+  'sm'  : ( min-width:  380px ),
+  'md' : ( min-width:  540px ),
+  'lg'  : ( min-width: 768px )
+);

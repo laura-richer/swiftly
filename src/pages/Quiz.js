@@ -6,13 +6,8 @@ import questions from '../json/questions.json';
 import Button from '../atoms/Button.js';
 import Form from '../components/Form.js';
 
-const getQuestion = (questionId) => {
-  return questions.find(question => question.id === questionId);
-}
-
-const getChoice = (question, choiceId) => {
-  return question.choices.find(choice => choice.id === choiceId);
-}
+const getQuestion = (questionId) => questions.find(question => question.id === questionId);
+const getChoice = (question, choiceId) => question.choices.find(choice => choice.id === choiceId);
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -71,9 +66,9 @@ const Quiz = () => {
 
   return (
     <div className="quiz">
-      <Form question={question} choiceId={choiceId} onChange={updateChoice}/>
+      <Form question={question} activeId={choiceId} onChange={updateChoice}/>
       <div className="quiz__footer">
-        <Button btnStyle="secondary" text="Reset" onClick={handleReset}/>
+        <Button btnStyle="secondary" text="Start over" onClick={handleReset} disabled={!savedQuestionId}/>
         <Button text={!nextQuestionId ? 'Get your soundtrack' : 'Next'} onClick={() => handleNext(nextQuestionId, choiceId)}/>
       </div>
     </div>

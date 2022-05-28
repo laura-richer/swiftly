@@ -1,22 +1,20 @@
-const Form = ({question, choiceId, onChange}) => {
+import RadioBtn from '../atoms/RadioBtn.js';
+
+const Form = ({question, activeId, onChange}) => {
   return (
     <form className="form">
       <label className="form__label">{question.label}</label>
-      <fieldset id={`question-${question.id}`}>
+      <div id={`question-${question.id}`}>
         {question.choices.map((choice, index) =>
-          <div key={choice.id}>
-            <label>{choice.label}</label>
-            <input
-              key={choice.id}
-              type="radio"
-              value={choice.value}
-              name={`question-${question.id}`}
-              checked={choiceId === choice.id}
-              onChange={() => onChange(question, choice.id)}
-            />
-          </div>
+          <RadioBtn
+            key={choice.id}
+            question={question}
+            choice={choice}
+            activeId={activeId}
+            onChange={() => onChange(question, choice.id)}
+          />
         )}
-      </fieldset>
+      </div>
     </form>
   );
 }

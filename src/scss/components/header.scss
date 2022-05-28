@@ -1,7 +1,10 @@
 .header {
-  background-color: $black;
-  color: $white;
+  position: sticky;
+  top: 0;
   padding: 2rem;
+  color: $white;
+  background-color: $black;
+  z-index: 9999;
 
   &__container {
     @include space-content;
@@ -14,9 +17,9 @@
   }
 
   &__image {
-    margin-left: 1rem;
     width: 60px;
     height: 60px;
+    margin-left: 1rem;
     border-radius: 50%;
   }
 }

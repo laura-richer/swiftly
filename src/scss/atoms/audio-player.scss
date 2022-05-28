@@ -1,8 +1,7 @@
 .audio-player {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
 
-  @media screen and (min-width: 540px) {
+  @include media('md') {
     flex-direction: row;
   }
 
@@ -15,20 +14,19 @@
     height: auto;
     margin-bottom: $spacer;
 
-    @media screen and (min-width: 540px) {
+    @include media('md') {
       margin: 0 $spacer * 2 0 0;
     }
   }
 
   &__preview {
-    display: flex;
-    flex-direction: column;
+    @include flex-column
   }
 
   &__meta {
     margin-bottom: $spacer;
 
-    @media screen and (min-width: 540px) {
+    @include media('md') {
       flex-grow: 1;
       margin-bottom: 0;
     }

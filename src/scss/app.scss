@@ -1,13 +1,18 @@
 @import './global/__variables';
-@import './global/__functions';
+@import './global/__mixins';
 @import './global/_typography';
 
 @import './atoms/audio-player';
 @import './atoms/btn';
+@import './atoms/loading-spinner';
+@import './atoms/radio-btn';
+
 @import './components/form';
 @import './components/header';
 @import './components/main';
-@import './components/quiz';
-@import './components/results-container';
+
+@import './pages/get-soundtrack';
+@import './pages/quiz';
+@import './pages/your-soundtrack';
 
 html { font-size: 10px; }

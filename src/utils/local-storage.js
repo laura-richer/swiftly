@@ -6,7 +6,7 @@ export const setItem = (property, value) => {
   window.localStorage.setItem(property, value);
 }
 
-export const removeItem = (property) => {
+const removeItem = (property) => {
   window.localStorage.removeItem(property);
 }
 
@@ -14,5 +14,4 @@ export const resetProgress = () => {
   removeItem('currentQuestionId');
   removeItem('currentChoiceId');
   removeItem('answers');
-  removeItem('playlist');
 }

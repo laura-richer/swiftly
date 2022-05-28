@@ -1,19 +1,33 @@
 .main {
-  font-family: 'Circular';
   min-height: 100vh;
-  background: rgb(105,117,221);
-  background: linear-gradient(45deg, rgba(105,117,221,1) 0%, rgba(115,85,176,1) 100%);
+  font-family: 'Circular';
+  background: $gradient;
+
+  @include media('md') {
+    @include flex-column;
+    height: 100vh;
+    min-height: auto;
+  }
 
   &__container {
-    @include center-content;
-    flex-direction: column;
-    padding: $spacer * 6 $spacer * 2;
+    flex-grow: 1;
     max-width: 768px;
     margin: 0 auto;
+    padding: $spacer * 3 $spacer * 2;
+
+    @include media('md') {
+      padding: $spacer * 6 $spacer * 2;
+      overflow: hidden;
+    }
   }
 
   &__content-wrapper {
     width: 100%;
-    margin-top: $spacer * 5;
+    margin-top: $spacer * 2.5;
+
+    @include media('md') {
+      height: 100%;
+      margin-top: $spacer * 5;
+    }
   }
 }
