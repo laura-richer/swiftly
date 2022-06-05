@@ -1,88 +1,95 @@
 import axios from 'axios';
+import Cookies from 'js-cookie'
 import { API_ENDPOINT } from './vars.js';
 
-// TODO once token has been got globally, make header object and apply to each api call
-// const headers = () => {
-//   // TODO get token here rather than sending from each component
+const headers = {Authorization: `Bearer ${Cookies.get('accessToken')}`};
 
-//   return {
-//     Authorization: `Bearer ${token}`
-//   }
-// }
+export const fetchUserData = async () => {
+  try {
+    const { data } = await axios.get(`${API_ENDPOINT}/me`, {
+      headers,
+    });
 
-export const fetchUserData = async (token) => {
-  const { data } = await axios.get(`${API_ENDPOINT}/me`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-
-  return data;
+    return data;
+  } catch(error) {
+    console.log(`Error fetching user data - ${error}`);
+  }
 }
 
-export const fetchCategoryPlaylists = async (token, category) => {
-  const { data } = await axios.get(`${API_ENDPOINT}/browse/categories/${category}/playlists?limit=50`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+export const fetchCategoryPlaylists = async (category) => {
+  try {
+    const { data } = await axios.get(`${API_ENDPOINT}/browse/categories/${category}/playlists?limit=50`, {
+      headers
+    });
 
-  return data;
+    return data;
+  } catch(error) {
+    console.log(`Error fetching category playlists - ${error}`);
+  }
 }
 
-export const fetchPlaylist = async (token, playlist) => {
-  const { data } = await axios.get(playlist, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+export const fetchPlaylist = async (playlist) => {
+  try {
+    const { data } = await axios.get(playlist, {
+      headers
+    });
 
-  return data;
+    return data;
+  } catch(error) {
+    console.log(`Error fetching playlist - ${error}`);
+  }
 }
 
-export const getPlaylist = async (token, playlistId) => {
-  const { data } = await axios.get(`${API_ENDPOINT}/playlists/${playlistId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+export const getPlaylist = async (playlistId) => {
+  try {
+    const { data } = await axios.get(`${API_ENDPOINT}/playlists/${playlistId}`, {
+      headers
+    });
 
-  return data;
+    return data;
+  } catch(error) {
+    console.log(`Error fetching soundtrack - ${error}`);
+  }
 }
 
-export const savePlaylist = async (token, userId, tracks) => {
-  const newPlaylist = await createPlaylist(token, userId);
-  await addTracksToPlaylist(token, newPlaylist.id, tracks);
+export const savePlaylist = async (userId, tracks) => {
+  const newPlaylist = await createPlaylist(userId);
+  await addTracksToPlaylist(newPlaylist.id, tracks);
   return newPlaylist;
 }
 
-const createPlaylist = async (token, userId) => {
+const createPlaylist = async (userId) => {
   const requestBody = {
     name: `SwiftLY Daily soundtrack - ${new Date().toDateString()}`,
-    public: false,
+    public: true,
   };
 
-  const { data } = await axios.post(`${API_ENDPOINT}/users/${userId}/playlists`, requestBody, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  try {
+    const { data } = await axios.post(`${API_ENDPOINT}/users/${userId}/playlists`, requestBody, {
+      headers
+    });
 
-  return data;
+    return data;
+  } catch(error) {
+    console.log(`Error creating new playlist - ${error}`);
+  }
+
 }
 
-const addTracksToPlaylist = async (token, playlistId, tracks) => {
+const addTracksToPlaylist = async (playlistId, tracks) => {
   const requestBody = {
     uris: [
       ...tracks
     ],
   }
 
-  const { data } = await axios.post(`${API_ENDPOINT}/playlists/${playlistId}/tracks`, requestBody, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  try {
+    const { data } = await axios.post(`${API_ENDPOINT}/playlists/${playlistId}/tracks`, requestBody, {
+      headers
+    });
 
-  return data;
+    return data;
+  } catch(error) {
+    console.log(`Error adding tracks to playlist - ${error}`)
+  }
 }

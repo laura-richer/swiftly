@@ -5,22 +5,28 @@ import { fetchUserData } from '../utils/api-calls.js';
 const UserDataContext = createContext();
 
 const UserDataContextProvider = ({children}) => {
-  const [cookies] = useCookies(['token']);
+  const [cookies] = useCookies(['accessToken']);
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    if (cookies.token) {
-      fetchUserData(cookies.token).then(response => {
-        setUserData({
-          name: response.display_name,
-          image: response.images[0].url,
-          id: response.id,
+    if (cookies.accessToken) {
+      try {
+        fetchUserData().then(response => {
+          setUserData({
+            name: response.display_name,
+            image: response.images[0].url,
+            id: response.id,
+          });
+        }).catch(error => {
+          console.log(error);
         });
-      }).catch(error => {
+      } catch(error) {
         console.log(error);
-      });
+        throw error;
+      }
+
     }
-  }, [cookies.token]);
+  }, [cookies.accessToken]);
 
   return (
     <UserDataContext.Provider value={userData}>

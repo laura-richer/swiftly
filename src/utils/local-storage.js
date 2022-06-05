@@ -10,7 +10,7 @@ const removeItem = (property) => {
   window.localStorage.removeItem(property);
 }
 
-export const resetProgress = () => {
+export const resetCurrentProgress = () => {
   removeItem('currentQuestionId');
   removeItem('currentChoiceId');
   removeItem('answers');

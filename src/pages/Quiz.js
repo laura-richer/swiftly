@@ -17,10 +17,10 @@ const Quiz = () => {
   const [questionId, setQuestionId] = useState(savedQuestionId || 1);
   const [choiceId, setChoiceId] = useState(savedChoiceId || 1);
 
-  let question = getQuestion(questionId);
-  let nextQuestionId = getChoice(question, choiceId).next_question;
+  let currentQuestion = getQuestion(questionId);
+  let nextQuestionId = getChoice(currentQuestion, choiceId).next_question;
 
-  const handleNext = (id: Number, choiceId: Number) => {
+  const handleNext = (id, choiceId) => {
     // If theres no more questions, get soundtrack
     if (!id) {
       navigate('/get-soundtrack');
@@ -31,17 +31,21 @@ const Quiz = () => {
     ls.setItem('currentQuestionId', id);
 
     // Add choice value to answers
-    updateAnswers(question, choiceId);
+    updateAnswers(currentQuestion, choiceId);
 
     // Get next question
-    setQuestionId(id);
-    question = getQuestion(id);
+    try {
+      setQuestionId(id);
+      currentQuestion = getQuestion(id);
 
-    // Set initial choice id
-    updateChoice(question, 1);
+      // Set initial choice id for new question
+      updateChoice(currentQuestion, 1);
+    } catch(error) {
+      console.log(error);
+    }
   }
 
-  const updateChoice = (question: Object, id: Number) => {
+  const updateChoice = (question, id) => {
     // Save current choice
     ls.setItem('currentChoiceId', id);
 
@@ -50,14 +54,14 @@ const Quiz = () => {
     nextQuestionId = getChoice(question, id).next_question;
   }
 
-  const updateAnswers = (question: Object, choiceId: Number) => {
+  const updateAnswers = (question, choiceId) => {
     const answers = JSON.parse(ls.getItem('answers')) || [];
     answers.push(getChoice(question, choiceId).value);
     ls.setItem('answers', JSON.stringify(answers));
   }
 
   const handleReset = () => {
-    ls.resetProgress();
+    ls.resetCurrentProgress();
 
     // Reset question & to initial values
     setQuestionId(1);
@@ -66,7 +70,7 @@ const Quiz = () => {
 
   return (
     <div className="quiz">
-      <Form question={question} activeId={choiceId} onChange={updateChoice}/>
+      <Form question={currentQuestion} activeId={choiceId} onChange={updateChoice}/>
       <div className="quiz__footer">
         <Button btnStyle="secondary" text="Start over" onClick={handleReset} disabled={!savedQuestionId}/>
         <Button text={!nextQuestionId ? 'Get your soundtrack' : 'Next'} onClick={() => handleNext(nextQuestionId, choiceId)}/>

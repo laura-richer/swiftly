@@ -3,9 +3,10 @@ const Button = ({tag, link, target, text, btnStyle, onClick, disabled}) => {
 
   return <button disabled={disabled} onClick={onClick} className={`btn btn--${btnStyle}`}>{text}</button>
 }
+
 Button.defaultProps = {
-  text: 'Click me',
   btnStyle: 'primary',
+  text: 'Click me',
 }
 
 export default Button;

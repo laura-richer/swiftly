@@ -1,7 +1,7 @@
 import Header from './Header.js';
 import { UserDataContextProvider } from './UserDataContext.js';
 
-const MainContainer = ({children}) => {
+function MainContainer({ children }) {
   return (
     <UserDataContextProvider>
       <div className="main">
@@ -18,7 +18,7 @@ const MainContainer = ({children}) => {
         </div>
       </div>
     </UserDataContextProvider>
-  )
+  );
 }
 
 export default MainContainer;

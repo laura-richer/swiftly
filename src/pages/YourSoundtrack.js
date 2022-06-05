@@ -1,26 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPlaylist } from '../utils/api-calls.js';
-import { resetProgress } from '../utils/local-storage.js';
+import { resetCurrentProgress } from '../utils/local-storage.js';
 
 import Button from '../atoms/Button.js';
 
-const YourSoundtrack = ({token}) => {
+const YourSoundtrack = () => {
   const navigate = useNavigate();
   const { playlistId } = useParams();
   const [playlistUrl, setPlaylistUrl] = useState();
 
   const handleReset = () => {
-    resetProgress();
+    resetCurrentProgress();
     navigate('/');
   }
 
   useEffect(() => {
-      getPlaylist(token, playlistId)
+      getPlaylist(playlistId)
         .then(response => {
           setPlaylistUrl(response.external_urls.spotify);
         }).catch((error) => {
-          // TODO if playlist doesnt exist start over
           console.log(error);
         });
     }, [playlistId])
@@ -29,9 +28,7 @@ const YourSoundtrack = ({token}) => {
     <div className="your-soundtrack">
       <Button tag="a" target="_blank" link={playlistUrl} text="Open in Spotify"/>
       <Button text="Start over" onClick={handleReset}/>
-      <div>
-        <p>share your soundtrack</p>
-      </div>
+      <Button tag="a" target="_blank" link="https://www.facebook.com/sharer/sharer.php?u=https%3A//open.spotify.com/playlist/1C1grPOraf0hFqzXYqo6qU?si=6e72478c53b64b4d" text="Share on Facebook"/>
     </div>
   )
 }

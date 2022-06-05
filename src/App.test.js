@@ -1,9 +1,9 @@
-const { checkToken } = require('../src/utils/token.js');
+const { getAccessToken } = require('../src/App.js');
 
-describe("Filter function", () => {
-  test("it should return false if no token provided", () => {
+describe("Get access token", () => {
+  test("Should return undefined if no callback url is provided", () => {
     const input = '';
-    const output = false;
-    expect(checkToken(input)).toEqual(output);
+    const output = undefined;
+    expect(getAccessToken(input)).toEqual(output);
   });
 });

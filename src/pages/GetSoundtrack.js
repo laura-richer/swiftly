@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, lazy } from 'react';
 import { useNavigate } from "react-router-dom";
 import { fetchCategoryPlaylists, fetchPlaylist, savePlaylist } from '../utils/api-calls.js';
-import { getItem, resetProgress } from '../utils/local-storage.js';
+import { getItem, resetCurrentProgress } from '../utils/local-storage.js';
 import { UserDataContext } from '../components/UserDataContext.js';
 
 import LoadingSpinner from '../atoms/LoadingSpinner.js';
@@ -9,26 +9,35 @@ import LoadingSpinner from '../atoms/LoadingSpinner.js';
 const AudioPlayer = lazy(() => import('../atoms/AudioPlayer.js'));
 const Button = lazy(() => import('../atoms/Button.js'));
 
-const getPlaylists = async (token, category) =>  {
-  const response = await fetchCategoryPlaylists(token, category);
+const getPlaylistFromCategory = async (category) =>  {
+  const response = await fetchCategoryPlaylists(category);
   // All available playlists for category
   const { playlists : { items }} = response;
 
-  // Pick a random playlist and get its url
-  const playlist = randomPick(items);
-  const { tracks : { href }} = playlist;
+  try {
+    // Pick a random playlist and get its url
+    const playlist = randomPick(items);
+    const { tracks : { href }} = playlist;
 
-  // TODO account for empty playlist
-  return href;
+    // TODO account for empty playlist
+    return href;
+  } catch(error) {
+    console.log(`Error getting playlist - ${error}`);
+  }
 }
 
-const getTracks = async (token, playlist) => {
-  const response = await fetchPlaylist(token, playlist);
+const getTrackFromPlaylist = async (playlist) => {
+  const response = await fetchPlaylist(playlist);
   const { items } = response;
-  const popularTracks = items.filter(item => item.track?.popularity > 40);
 
-  // TODO account for empty track
-  return randomPick(popularTracks).track;
+  try {
+    const popularTracks = items.filter(item => item.track?.popularity > 40);
+
+    // If theres no popular tracks in a playlist, use all tracks from playlist
+    return popularTracks.length > 0 ? randomPick(popularTracks).track : randomPick(items).track;
+  } catch(error) {
+    console.log(`Error getting playlist track - ${error}`);
+  }
 }
 
 const randomPick = (items) => items[Math.floor(Math.random() * items.length)];
@@ -46,10 +55,10 @@ const initEventListners = () => {
   }, true);
 }
 
-const GetSoundtrack = ({token}) => {
+const GetSoundtrack = () => {
   const navigate = useNavigate();
   const userData = useContext(UserDataContext);
-  const categories = JSON.parse(getItem('answers'));
+  const categoriesForQuestionAnswers = JSON.parse(getItem('answers'));
 
   const playlists = [];
   const tracks = [];
@@ -58,17 +67,10 @@ const GetSoundtrack = ({token}) => {
   const [trackURIs, setTrackURIs] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // TODO why is the component re rendering 5 times?
-  console.log(userData);
-
-  // Get a random playlist for each category
-  categories.forEach(category => playlists.push(getPlaylists(token, category)));
-
   const handleSaveAsPlaylist = (trackURIs) => {
-    savePlaylist(token, userData.id, trackURIs).then(response => {
+    savePlaylist(userData.id, trackURIs).then(response => {
       navigate(`/your-soundtrack/${response.id}`);
     }).catch(error => {
-      // TODO error handling
       console.log(error);
     });
   }
@@ -79,7 +81,7 @@ const GetSoundtrack = ({token}) => {
   }
 
   const handleReset = () => {
-    resetProgress();
+    resetCurrentProgress();
     navigate('/');
   }
 
@@ -87,20 +89,28 @@ const GetSoundtrack = ({token}) => {
     if (trackData) initEventListners();
 
     if (!trackData) {
-      Promise.all(playlists).then(response => {
-        const playlistData = response;
+      // Get a random playlist for each category
+      categoriesForQuestionAnswers.forEach(category => playlists.push(getPlaylistFromCategory(category)));
 
-        // Get a random track from each playlist
-        playlistData?.forEach(playlist => tracks.push(getTracks(token, playlist)));
+      try {
+        // TODO better way to write all of this?
+        // Move to functions so I can call seperate parts to refresh the playlist
+        Promise.all(playlists).then(response => {
+          const playlistData = response;
 
-        Promise.all(tracks).then(response => {
-          // TODO does this need to be state???
-          setTrackURIs(response.map(({ uri }) => uri));
-          setTrackData(response);
-        }).then(() => {
-          setIsLoaded(true);
-        }).catch(error => console.log(`Error in Tracks ${error}`));
-      }).catch(error => console.log(`Error in Playlists ${error}`));
+          // Get a random track from each playlist
+          playlistData?.forEach(playlist => tracks.push(getTrackFromPlaylist(playlist)));
+
+          Promise.all(tracks).then(response => {
+            setTrackURIs(response.map(({ uri }) => uri));
+            setTrackData(response);
+          }).then(() => {
+            setIsLoaded(true);
+          }).catch(error => console.log(`Error in Tracks - ${error}`));
+        }).catch(error => console.log(`Error in Playlists - ${error}`));
+      } catch(error) {
+        console.log(error);
+      }
     }
   }, [playlists]);
 

@@ -7,13 +7,19 @@
   }
 
   &__ctas {
-    @include space-content;
+    flex-direction: column-reverse;
     margin-bottom: $spacer * 2;
+
+    @include media('md') {
+      @include space-content;
+      flex-direction: row;
+    }
 
     @include media('lg') {
       flex-direction: column-reverse;
       justify-content: flex-end;
       align-items: flex-end;
+      margin-left: $spacer * 2;
     }
   }
 
@@ -21,7 +27,7 @@
     flex-grow: 1;
 
     @include media('lg') {
-      // TODO sort spacing at bottom of playlist
+      padding-bottom: $spacer * 5;
       overflow: scroll;
     }
   }
