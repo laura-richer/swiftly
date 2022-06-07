@@ -2,12 +2,14 @@ import axios from 'axios';
 import Cookies from 'js-cookie'
 import { API_ENDPOINT } from './vars.js';
 
-const headers = {Authorization: `Bearer ${Cookies.get('accessToken')}`};
+const headers = { Authorization: `Bearer ${Cookies.get('accessToken')}` };
 
-export const fetchUserData = async () => {
+export const fetchUserData = async (token) => {
   try {
     const { data } = await axios.get(`${API_ENDPOINT}/me`, {
-      headers,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     return data;
@@ -61,7 +63,7 @@ export const savePlaylist = async (userId, tracks) => {
 const createPlaylist = async (userId) => {
   const requestBody = {
     name: `SwiftLY Daily soundtrack - ${new Date().toDateString()}`,
-    public: true,
+    public: false,
   };
 
   try {

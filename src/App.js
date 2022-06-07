@@ -11,18 +11,7 @@ import MainContainer from './components/MainContainer.js';
 
 import './scss/app.scss';
 
-  // JS & performance
-  // TODO simplify quiz and getSoundtrack components
-  // TODO scope css to components rather than load all in globally
-  // TODO set up linting
-  // TODO unit tests
-  // TODO move process login stuff to HOC? Wrapper component?
-  // TODO read about useEffect dependancies
-
-  // Styling
-  // TODO animation
-
-const getAccessToken = (loginCallbackUrl) => {
+export const getAccessToken = (loginCallbackUrl) => {
   if (!loginCallbackUrl) return;
 
   const accessToken = loginCallbackUrl.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];

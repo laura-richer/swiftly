@@ -1,7 +1,14 @@
 function AudioPlayer({ track }) {
   return (
     <div className="audio-player">
-      {track.album?.images[0]?.url && <img className="audio-player__image" loading="lazy" src={track.album?.images[0]?.url} alt={track.name} />}
+      {track.album?.images[0]?.url &&
+        <img
+          className="audio-player__image"
+          loading="lazy"
+          src={track.album?.images[0]?.url}
+          alt={track.name}
+        />
+      }
       <div className="audio-player__preview">
         <div className="audio-player__meta">
           <p>{track.name}</p>

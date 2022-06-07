@@ -19,7 +19,6 @@ const getPlaylistFromCategory = async (category) =>  {
     const playlist = randomPick(items);
     const { tracks : { href }} = playlist;
 
-    // TODO account for empty playlist
     return href;
   } catch(error) {
     console.log(`Error getting playlist - ${error}`);
@@ -76,7 +75,6 @@ const GetSoundtrack = () => {
   }
 
   const handleRefreshSoundtrack = () => {
-    // TODO Do this better by just re calling the functions or re rendering the component
     window.location.reload();
   }
 
@@ -93,8 +91,6 @@ const GetSoundtrack = () => {
       categoriesForQuestionAnswers.forEach(category => playlists.push(getPlaylistFromCategory(category)));
 
       try {
-        // TODO better way to write all of this?
-        // Move to functions so I can call seperate parts to refresh the playlist
         Promise.all(playlists).then(response => {
           const playlistData = response;
 

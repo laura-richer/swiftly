@@ -11,7 +11,7 @@ const UserDataContextProvider = ({children}) => {
   useEffect(() => {
     if (cookies.accessToken) {
       try {
-        fetchUserData().then(response => {
+        fetchUserData(cookies.accessToken).then(response => {
           setUserData({
             name: response.display_name,
             image: response.images[0].url,

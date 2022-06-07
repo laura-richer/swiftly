@@ -72,7 +72,12 @@ const Quiz = () => {
     <div className="quiz">
       <Form question={currentQuestion} activeId={choiceId} onChange={updateChoice}/>
       <div className="quiz__footer">
-        <Button btnStyle="secondary" text="Start over" onClick={handleReset} disabled={!savedQuestionId}/>
+        <Button
+          btnStyle="secondary"
+          text="Start over"
+          onClick={handleReset}
+          disabled={!savedQuestionId}
+        />
         <Button text={!nextQuestionId ? 'Get your soundtrack' : 'Next'} onClick={() => handleNext(nextQuestionId, choiceId)}/>
       </div>
     </div>

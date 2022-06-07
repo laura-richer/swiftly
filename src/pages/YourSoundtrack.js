@@ -26,9 +26,19 @@ const YourSoundtrack = () => {
 
   return (
     <div className="your-soundtrack">
-      <Button tag="a" target="_blank" link={playlistUrl} text="Open in Spotify"/>
+      <Button
+        tag="a"
+        target="_blank"
+        link={playlistUrl}
+        text="Open in Spotify"
+      />
       <Button text="Start over" onClick={handleReset}/>
-      <Button tag="a" target="_blank" link="https://www.facebook.com/sharer/sharer.php?u=https%3A//open.spotify.com/playlist/1C1grPOraf0hFqzXYqo6qU?si=6e72478c53b64b4d" text="Share on Facebook"/>
+      <Button
+        tag="a"
+        target="_blank"
+        link="https://www.facebook.com/sharer/sharer.php?u=https%3A//open.spotify.com/playlist/1C1grPOraf0hFqzXYqo6qU?si=6e72478c53b64b4d"
+        text="Share on Facebook"
+      />
     </div>
   )
 }
