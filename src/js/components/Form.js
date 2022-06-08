@@ -1,4 +1,4 @@
-import RadioButton from '../atoms/RadioBtn';
+import RadioButton from '../atoms/RadioButton';
 
 const Form = ({ question, activeId, onChange }) => {
   return (
