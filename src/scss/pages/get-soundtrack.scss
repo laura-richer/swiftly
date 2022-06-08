@@ -29,6 +29,16 @@
     @include media('lg') {
       padding-bottom: $spacer * 5;
       overflow: scroll;
+
+      &::-webkit-scrollbar {
+        width: calc($spacer / 2);
+      }
+
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: calc($spacer / 2);
+      }
     }
   }
 }

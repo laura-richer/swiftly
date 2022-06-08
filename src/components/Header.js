@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from 'react';
 import { UserDataContext } from './UserDataContext.js';
-import ghost from '../assets/images/ghost.png';
+import guestUser from '../assets/images/ghost.png';
 
 const Header = () => {
   const [name, setName] = useState('Stranger');
-  const [image, setImage] = useState(ghost);
+  const [image, setImage] = useState(guestUser);
   const userData = useContext(UserDataContext);
 
   useEffect(() => {
