@@ -1,4 +1,4 @@
-const RadioBtn = ({question, choice, activeId, onChange}) => {
+const RadioButton = ({ question, choice, activeId, onChange }) => {
   return (
     <label className="radio-btn" key={choice.id}>
       <input
@@ -8,11 +8,12 @@ const RadioBtn = ({question, choice, activeId, onChange}) => {
         value={choice.value}
         name={`question-${question.id}`}
         checked={activeId === choice.id ? 'checked' : ''}
-        onChange={() => onChange(question, choice.id)} />
+        onChange={() => onChange(question, choice.id)}
+      />
       <span className="radio-btn__indicator"></span>
       <p>{choice.label}</p>
     </label>
   );
 };
 
-export default RadioBtn;
+export default RadioButton;

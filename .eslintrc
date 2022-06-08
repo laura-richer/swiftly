@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:compat/recommended",
+    "plugin:lodash/recommended",
+    "plugin:prettier/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:unicorn/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "parse": "@babel/eslint-parser",
+    "ecmaVersion": 8,
+    "extends": "airbnb-base",
+    "requireConfigFile": false,
+    "sourceType": "module"
+  },
+  "plugins": ["sonarjs"],
+  "rules": {
+    "compat/compat": ["warn"],
+    "import/no-mutable-exports": ["warn"],
+    "max-classes-per-file": ["warn", 1],
+    "max-lines": ["warn", 300],
+    "max-nested-callbacks": ["warn", 3],
+    "no-console": "warn",
+    "no-debugger": "error",
+    "no-plusplus": [
+      "warn",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-unused-vars": "warn",
+    "prettier/prettier": "warn",
+    "unicorn/filename-case": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/prefer-dom-node-remove": "off",
+    "lodash/prefer-lodash-method": "off",
+    "lodash/prefer-lodash-typecheck": "off",
+    "lodash/prefer-noop": "off"
+  }
+}

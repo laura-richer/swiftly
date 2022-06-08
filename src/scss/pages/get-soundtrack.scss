@@ -2,8 +2,8 @@
   @include flex-column;
 
   @include media('lg') {
-    flex-direction: row-reverse;
     height: 100%;
+    flex-direction: row-reverse;
   }
 
   &__ctas {
@@ -12,13 +12,14 @@
 
     @include media('md') {
       @include space-content;
+
       flex-direction: row;
     }
 
     @include media('lg') {
       flex-direction: column-reverse;
-      justify-content: flex-end;
       align-items: flex-end;
+      justify-content: flex-end;
       margin-left: $spacer * 2;
     }
   }
@@ -27,16 +28,15 @@
     flex-grow: 1;
 
     @include media('lg') {
-      padding-bottom: $spacer * 5;
       overflow: scroll;
+      padding-bottom: $spacer * 5;
 
       &::-webkit-scrollbar {
         width: calc($spacer / 2);
       }
 
-
       &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0 0 0 / 50%);
         border-radius: calc($spacer / 2);
       }
     }

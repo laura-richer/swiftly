@@ -13,8 +13,8 @@
 
     @include media('md') {
       display: grid;
-      grid-template-columns: 1fr 1fr;
       grid-gap: $spacer;
+      grid-template-columns: 1fr 1fr;
     }
   }
 }

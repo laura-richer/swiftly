@@ -1,23 +1,22 @@
 .main {
   min-height: 100vh;
-  font-family: 'Circular';
-  background: $gradient;
 
   @include media('md') {
     @include flex-column;
+
     height: 100vh;
     min-height: auto;
   }
 
   &__container {
-    flex-grow: 1;
     max-width: 768px;
-    margin: 0 auto;
+    flex-grow: 1;
     padding: $spacer * 3 $spacer * 2;
+    margin: 0 auto;
 
     @include media('md') {
-      padding: $spacer * 6 $spacer * 2;
       overflow: hidden;
+      padding: $spacer * 6 $spacer * 2;
     }
   }
 

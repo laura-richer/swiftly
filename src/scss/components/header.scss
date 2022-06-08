@@ -1,13 +1,14 @@
 .header {
   position: sticky;
+  z-index: 9999;
   top: 0;
   padding: 2rem;
-  color: $white;
   background-color: $black;
-  z-index: 9999;
+  color: $white;
 
   &__container {
     @include space-content;
+
     max-width: 1200px;
     margin: 0 auto;
   }

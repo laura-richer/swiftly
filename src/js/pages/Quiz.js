@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as ls from '../utils/local-storage.js';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as ls from '../utils/local-storage';
 import questions from '../json/questions.json';
 
-import Button from '../atoms/Button.js';
-import Form from '../components/Form.js';
+import Button from '../atoms/Button';
+import Form from '../components/Form';
 
-const getQuestion = (questionId) => questions.find(question => question.id === questionId);
+const getQuestion = questionId => questions.find(question => question.id === questionId);
 const getChoice = (question, choiceId) => question.choices.find(choice => choice.id === choiceId);
 
 const Quiz = () => {
@@ -25,7 +25,7 @@ const Quiz = () => {
     if (!id) {
       navigate('/get-soundtrack');
       return;
-    };
+    }
 
     // Save progress
     ls.setItem('currentQuestionId', id);
@@ -40,10 +40,10 @@ const Quiz = () => {
 
       // Set initial choice id for new question
       updateChoice(currentQuestion, 1);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const updateChoice = (question, id) => {
     // Save current choice
@@ -52,13 +52,13 @@ const Quiz = () => {
     // Update choice id and get next question id
     setChoiceId(id);
     nextQuestionId = getChoice(question, id).next_question;
-  }
+  };
 
   const updateAnswers = (question, choiceId) => {
     const answers = JSON.parse(ls.getItem('answers')) || [];
     answers.push(getChoice(question, choiceId).value);
     ls.setItem('answers', JSON.stringify(answers));
-  }
+  };
 
   const handleReset = () => {
     ls.resetCurrentProgress();
@@ -66,11 +66,11 @@ const Quiz = () => {
     // Reset question & to initial values
     setQuestionId(1);
     setChoiceId(1);
-  }
+  };
 
   return (
     <div className="quiz">
-      <Form question={currentQuestion} activeId={choiceId} onChange={updateChoice}/>
+      <Form question={currentQuestion} activeId={choiceId} onChange={updateChoice} />
       <div className="quiz__footer">
         <Button
           btnStyle="secondary"
@@ -78,10 +78,13 @@ const Quiz = () => {
           onClick={handleReset}
           disabled={!savedQuestionId}
         />
-        <Button text={!nextQuestionId ? 'Get your soundtrack' : 'Next'} onClick={() => handleNext(nextQuestionId, choiceId)}/>
+        <Button
+          text={!nextQuestionId ? 'Get your soundtrack' : 'Next'}
+          onClick={() => handleNext(nextQuestionId, choiceId)}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Quiz;

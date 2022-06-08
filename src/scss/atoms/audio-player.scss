@@ -20,7 +20,7 @@
   }
 
   &__preview {
-    @include flex-column
+    @include flex-column;
   }
 
   &__meta {

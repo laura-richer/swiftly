@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getPlaylist } from '../utils/api-calls.js';
-import { resetCurrentProgress } from '../utils/local-storage.js';
+import { getPlaylist } from '../utils/api-calls';
+import { resetCurrentProgress } from '../utils/local-storage';
 
-import Button from '../atoms/Button.js';
+import Button from '../atoms/Button';
 
 const YourSoundtrack = () => {
   const navigate = useNavigate();
@@ -13,26 +13,22 @@ const YourSoundtrack = () => {
   const handleReset = () => {
     resetCurrentProgress();
     navigate('/');
-  }
+  };
 
   useEffect(() => {
-      getPlaylist(playlistId)
-        .then(response => {
-          setPlaylistUrl(response.external_urls.spotify);
-        }).catch((error) => {
-          console.log(error);
-        });
-    }, [playlistId])
+    getPlaylist(playlistId)
+      .then(response => {
+        setPlaylistUrl(response.external_urls.spotify);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [playlistId]);
 
   return (
     <div className="your-soundtrack">
-      <Button
-        tag="a"
-        target="_blank"
-        link={playlistUrl}
-        text="Open in Spotify"
-      />
-      <Button text="Start over" onClick={handleReset}/>
+      <Button tag="a" target="_blank" link={playlistUrl} text="Open in Spotify" />
+      <Button text="Start over" onClick={handleReset} />
       <Button
         tag="a"
         target="_blank"
@@ -40,7 +36,7 @@ const YourSoundtrack = () => {
         text="Share on Facebook"
       />
     </div>
-  )
-}
+  );
+};
 
 export default YourSoundtrack;
