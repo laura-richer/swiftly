@@ -8,6 +8,8 @@
     "react-app/jest",
     "airbnb-base",
     "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:compat/recommended",
     "plugin:lodash/recommended",
     "plugin:prettier/recommended",
@@ -29,7 +31,10 @@
     "max-classes-per-file": ["warn", 1],
     "max-lines": ["warn", 300],
     "max-nested-callbacks": ["warn", 3],
-    "no-console": "warn",
+    "no-console": [
+      "warn",
+      { "allow": ["error", "warn"] }
+    ],
     "no-debugger": "error",
     "no-plusplus": [
       "warn",
@@ -37,6 +42,7 @@
         "allowForLoopAfterthoughts": true
       }
     ],
+    "no-shadow": ["error", { "builtinGlobals": false }],
     "no-unused-vars": "warn",
     "prettier/prettier": "warn",
     "unicorn/filename-case": "off",
@@ -44,6 +50,7 @@
     "unicorn/prefer-dom-node-remove": "off",
     "lodash/prefer-lodash-method": "off",
     "lodash/prefer-lodash-typecheck": "off",
-    "lodash/prefer-noop": "off"
+    "lodash/prefer-noop": "off",
+    "consistent-return": ["off"]
   }
 }

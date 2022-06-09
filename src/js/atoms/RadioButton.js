@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const RadioButton = ({ question, choice, activeId, onChange }) => {
   return (
     <label className="radio-btn" key={choice.id}>
@@ -14,6 +16,13 @@ const RadioButton = ({ question, choice, activeId, onChange }) => {
       <p>{choice.label}</p>
     </label>
   );
+};
+
+RadioButton.propTypes = {
+  question: PropTypes.object.isRequired,
+  choice: PropTypes.object.isRequired,
+  activeId: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default RadioButton;

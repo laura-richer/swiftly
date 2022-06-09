@@ -15,10 +15,33 @@ const Quiz = () => {
   const savedChoiceId = Number(ls.getItem('currentChoiceId'));
 
   const [questionId, setQuestionId] = useState(savedQuestionId || 1);
-  const [choiceId, setChoiceId] = useState(savedChoiceId || 1);
+  const [currentChoicehoiceId, setCurrentChoiceId] = useState(savedChoiceId || 1);
 
   let currentQuestion = getQuestion(questionId);
-  let nextQuestionId = getChoice(currentQuestion, choiceId).next_question;
+  let nextQuestionId = getChoice(currentQuestion, currentChoicehoiceId).next_question;
+
+  const updateChoice = (question, id) => {
+    // Save current choice
+    ls.setItem('currentChoiceId', id);
+
+    // Update choice id and get next question id
+    setCurrentChoiceId(id);
+    nextQuestionId = getChoice(question, id).next_question;
+  };
+
+  const updateAnswers = (question, choiceId) => {
+    const answers = JSON.parse(ls.getItem('answers')) || [];
+    answers.push(getChoice(question, choiceId).value);
+    ls.setItem('answers', JSON.stringify(answers));
+  };
+
+  const handleReset = () => {
+    ls.resetCurrentProgress();
+
+    // Reset question & to initial values
+    setQuestionId(1);
+    setCurrentChoiceId(1);
+  };
 
   const handleNext = (id, choiceId) => {
     // If theres no more questions, get soundtrack
@@ -41,36 +64,13 @@ const Quiz = () => {
       // Set initial choice id for new question
       updateChoice(currentQuestion, 1);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-  };
-
-  const updateChoice = (question, id) => {
-    // Save current choice
-    ls.setItem('currentChoiceId', id);
-
-    // Update choice id and get next question id
-    setChoiceId(id);
-    nextQuestionId = getChoice(question, id).next_question;
-  };
-
-  const updateAnswers = (question, choiceId) => {
-    const answers = JSON.parse(ls.getItem('answers')) || [];
-    answers.push(getChoice(question, choiceId).value);
-    ls.setItem('answers', JSON.stringify(answers));
-  };
-
-  const handleReset = () => {
-    ls.resetCurrentProgress();
-
-    // Reset question & to initial values
-    setQuestionId(1);
-    setChoiceId(1);
   };
 
   return (
     <div className="quiz">
-      <Form question={currentQuestion} activeId={choiceId} onChange={updateChoice} />
+      <Form question={currentQuestion} activeId={currentChoicehoiceId} onChange={updateChoice} />
       <div className="quiz__footer">
         <Button
           btnStyle="secondary"
@@ -80,7 +80,7 @@ const Quiz = () => {
         />
         <Button
           text={!nextQuestionId ? 'Get your soundtrack' : 'Next'}
-          onClick={() => handleNext(nextQuestionId, choiceId)}
+          onClick={() => handleNext(nextQuestionId, currentChoicehoiceId)}
         />
       </div>
     </div>

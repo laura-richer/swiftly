@@ -3,14 +3,14 @@ import { UserDataContext } from './UserDataContext';
 import guestUser from '../../assets/images/ghost.png';
 
 const Header = () => {
-  const [name, setName] = useState('Stranger');
-  const [image, setImage] = useState(guestUser);
+  const [userName, setUserName] = useState('Stranger');
+  const [userImage, setUserImage] = useState(guestUser);
   const userData = useContext(UserDataContext);
 
   useEffect(() => {
     if (userData) {
-      setName(userData.name);
-      setImage(userData.image);
+      setUserName(userData.name);
+      setUserImage(userData.image);
     }
   }, [userData]);
 
@@ -22,9 +22,9 @@ const Header = () => {
           <h4>
             Hi there
             <br />
-            {name}
+            {userName}
           </h4>
-          <img src={image} alt={name} className="header__image" />
+          <img src={userImage} alt={userName} className="header__image" />
         </div>
       </div>
     </header>

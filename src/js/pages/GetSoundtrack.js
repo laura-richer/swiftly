@@ -27,7 +27,7 @@ const getPlaylistFromCategory = async category => {
 
     return href;
   } catch (error) {
-    console.log(`Error getting playlist - ${error}`);
+    console.error(`Error getting playlist - ${error}`);
   }
 };
 
@@ -41,7 +41,7 @@ const getTrackFromPlaylist = async playlist => {
     // If theres no popular tracks in a playlist, use all tracks from playlist
     return popularTracks.length > 0 ? randomPick(popularTracks).track : randomPick(items).track;
   } catch (error) {
-    console.log(`Error getting playlist track - ${error}`);
+    console.error(`Error getting playlist track - ${error}`);
   }
 };
 
@@ -78,13 +78,13 @@ const GetSoundtrack = () => {
   const [trackURIs, setTrackURIs] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const handleSaveAsPlaylist = trackURIs => {
-    savePlaylist(userData.id, trackURIs)
+  const handleSaveAsPlaylist = uris => {
+    savePlaylist(userData.id, uris)
       .then(response => {
         navigate(`/your-soundtrack/${response.id}`);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -104,25 +104,25 @@ const GetSoundtrack = () => {
 
       try {
         Promise.all(playlists)
-          .then(response => {
-            const playlistData = response;
+          .then(playlistResponse => {
+            const playlistData = playlistResponse;
 
             // Get a random track from each playlist
             playlistData?.forEach(playlist => tracks.push(getTrackFromPlaylist(playlist)));
 
             Promise.all(tracks)
-              .then(response => {
-                setTrackURIs(response.map(({ uri }) => uri));
-                setTrackData(response);
+              .then(trackResponse => {
+                setTrackURIs(trackResponse.map(({ uri }) => uri));
+                setTrackData(trackResponse);
               })
               .then(() => {
                 setIsLoaded(true);
               })
-              .catch(error => console.log(`Error in Tracks - ${error}`));
+              .catch(error => console.error(`Error in Tracks - ${error}`));
           })
-          .catch(error => console.log(`Error in Playlists - ${error}`));
+          .catch(error => console.error(`Error in Playlists - ${error}`));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   }, [playlists]);

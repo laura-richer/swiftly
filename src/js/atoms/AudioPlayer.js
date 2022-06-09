@@ -1,4 +1,6 @@
-function AudioPlayer({ track }) {
+import PropTypes from 'prop-types';
+
+const AudioPlayer = ({ track }) => {
   return (
     <div className="audio-player">
       {track.album?.images[0]?.url && (
@@ -20,6 +22,10 @@ function AudioPlayer({ track }) {
       </div>
     </div>
   );
-}
+};
+
+AudioPlayer.propTypes = {
+  track: PropTypes.object.isRequired,
+};
 
 export default AudioPlayer;

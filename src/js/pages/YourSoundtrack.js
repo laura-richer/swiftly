@@ -21,7 +21,7 @@ const YourSoundtrack = () => {
         setPlaylistUrl(response.external_urls.spotify);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   }, [playlistId]);
 

@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import Header from './Header';
 import { UserDataContextProvider } from './UserDataContext';
 
-function MainContainer({ children }) {
+const MainContainer = ({ children }) => {
   return (
     <UserDataContextProvider>
       <div className="main">
@@ -18,6 +19,10 @@ function MainContainer({ children }) {
       </div>
     </UserDataContextProvider>
   );
-}
+};
+
+MainContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default MainContainer;

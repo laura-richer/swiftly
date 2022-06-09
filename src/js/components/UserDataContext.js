@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import PropTypes from 'prop-types';
 import { fetchUserData } from '../utils/api-calls';
 
 const UserDataContext = createContext();
@@ -20,16 +21,20 @@ const UserDataContextProvider = ({ children }) => {
             });
           })
           .catch(error => {
-            console.log(error);
+            console.error(error);
           });
       } catch (error) {
-        console.log(error);
+        console.error(error);
         throw error;
       }
     }
   }, [cookies.accessToken]);
 
   return <UserDataContext.Provider value={userData}>{children}</UserDataContext.Provider>;
+};
+
+UserDataContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export { UserDataContext, UserDataContextProvider };

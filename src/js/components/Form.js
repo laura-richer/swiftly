@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import RadioButton from '../atoms/RadioButton';
 
 const Form = ({ question, activeId, onChange }) => {
@@ -17,6 +18,12 @@ const Form = ({ question, activeId, onChange }) => {
       </div>
     </form>
   );
+};
+
+Form.propTypes = {
+  question: PropTypes.object.isRequired,
+  activeId: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Form;

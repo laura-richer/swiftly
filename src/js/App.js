@@ -9,15 +9,15 @@ import GetSoundtrack from './pages/GetSoundtrack';
 import YourSoundtrack from './pages/YourSoundtrack';
 import MainContainer from './components/MainContainer';
 
-export const getAccessToken = loginCallbackUrl => {
-  if (!loginCallbackUrl) return;
+const getAccessToken = url => {
+  if (!url) return;
 
-  const accessToken = loginCallbackUrl
+  const accessToken = url
     .slice(1)
     .split('&')
     .find(element => element.startsWith('access_token'))
     .split('=')[1];
-  const maxAge = loginCallbackUrl
+  const maxAge = url
     .slice(1)
     .split('&')
     .find(element => element.startsWith('expires_in'))
@@ -26,23 +26,22 @@ export const getAccessToken = loginCallbackUrl => {
   return { accessToken, maxAge };
 };
 
-function App() {
+const App = () => {
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['accessToken']);
   const loginCallbackUrl = window.location?.hash;
 
-  const processLogin = loginCallbackUrl => {
+  const processLogin = url => {
     try {
       resetCurrentProgress();
 
-      const { accessToken, maxAge } = getAccessToken(loginCallbackUrl);
+      const { accessToken, maxAge } = getAccessToken(url);
       setCookie('accessToken', accessToken, {
         maxAge,
       });
       navigate('/');
     } catch (error) {
-      console.log(error);
-      throw error;
+      console.error(error);
     }
   };
 
@@ -65,6 +64,6 @@ function App() {
       )}
     </MainContainer>
   );
-}
+};
 
 export default App;

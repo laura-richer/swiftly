@@ -14,7 +14,7 @@ export const fetchUserData = async () => {
 
     return data;
   } catch (error) {
-    console.log(`Error fetching user data - ${error}`);
+    console.error(`Error fetching user data - ${error}`);
   }
 };
 
@@ -29,7 +29,7 @@ export const fetchCategoryPlaylists = async category => {
 
     return data;
   } catch (error) {
-    console.log(`Error fetching category playlists - ${error}`);
+    console.error(`Error fetching category playlists - ${error}`);
   }
 };
 
@@ -41,7 +41,7 @@ export const fetchPlaylist = async playlist => {
 
     return data;
   } catch (error) {
-    console.log(`Error fetching playlist - ${error}`);
+    console.error(`Error fetching playlist - ${error}`);
   }
 };
 
@@ -53,7 +53,7 @@ export const getPlaylist = async playlistId => {
 
     return data;
   } catch (error) {
-    console.log(`Error fetching soundtrack - ${error}`);
+    console.error(`Error fetching soundtrack - ${error}`);
   }
 };
 
@@ -70,7 +70,7 @@ const createPlaylist = async userId => {
 
     return data;
   } catch (error) {
-    console.log(`Error creating new playlist - ${error}`);
+    console.error(`Error creating new playlist - ${error}`);
   }
 };
 
@@ -90,7 +90,7 @@ const addTracksToPlaylist = async (playlistId, tracks) => {
 
     return data;
   } catch (error) {
-    console.log(`Error adding tracks to playlist - ${error}`);
+    console.error(`Error adding tracks to playlist - ${error}`);
   }
 };
 

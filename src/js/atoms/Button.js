@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Button = ({ tag, link, target, text, btnStyle, onClick, disabled }) => {
   if (tag === 'a')
     return (
@@ -11,6 +13,16 @@ const Button = ({ tag, link, target, text, btnStyle, onClick, disabled }) => {
       {text}
     </button>
   );
+};
+
+Button.propTypes = {
+  tag: PropTypes.string,
+  link: PropTypes.string,
+  target: PropTypes.string,
+  text: PropTypes.string,
+  btnStyle: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
