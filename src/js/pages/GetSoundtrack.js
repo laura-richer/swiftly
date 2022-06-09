@@ -71,8 +71,8 @@ const GetSoundtrack = () => {
   const userData = useContext(UserDataContext);
   const categoriesForQuestionAnswers = JSON.parse(getItem('answers'));
 
-  const playlists = [];
-  const tracks = [];
+  const playlistsPromise = [];
+  const tracksPromise = [];
 
   const [trackData, setTrackData] = useState();
   const [trackURIs, setTrackURIs] = useState();
@@ -99,33 +99,32 @@ const GetSoundtrack = () => {
     if (!trackData) {
       // Get a random playlist for each category
       categoriesForQuestionAnswers.forEach(category =>
-        playlists.push(getPlaylistFromCategory(category))
+        playlistsPromise.push(getPlaylistFromCategory(category))
       );
 
       try {
-        Promise.all(playlists)
-          .then(playlistResponse => {
-            const playlistData = playlistResponse;
-
+        Promise.all(playlistsPromise)
+          .then(playlistsResolved => {
             // Get a random track from each playlist
-            playlistData?.forEach(playlist => tracks.push(getTrackFromPlaylist(playlist)));
+            playlistsResolved?.forEach(playlist =>
+              tracksPromise.push(getTrackFromPlaylist(playlist))
+            );
 
-            Promise.all(tracks)
-              .then(trackResponse => {
-                setTrackURIs(trackResponse.map(({ uri }) => uri));
-                setTrackData(trackResponse);
-              })
-              .then(() => {
-                setIsLoaded(true);
-              })
-              .catch(error => console.error(`Error in Tracks - ${error}`));
+            return Promise.all(tracksPromise);
+          })
+          .then(tracksResolved => {
+            setTrackURIs(tracksResolved.map(({ uri }) => uri));
+            setTrackData(tracksResolved);
+          })
+          .then(() => {
+            setIsLoaded(true);
           })
           .catch(error => console.error(`Error in Playlists - ${error}`));
       } catch (error) {
         console.error(error);
       }
     }
-  }, [playlists]);
+  }, [playlistsPromise]);
 
   if (!isLoaded) return <LoadingSpinner />;
 
