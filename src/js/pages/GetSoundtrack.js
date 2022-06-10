@@ -9,29 +9,24 @@ import LoadingSpinner from '../atoms/LoadingSpinner';
 const AudioPlayer = lazy(() => import('../atoms/AudioPlayer'));
 const Button = lazy(() => import('../atoms/Button'));
 
+const promiseResolveAll = async promise => Promise.all(promise);
+
 const randomPick = items => items[Math.floor(Math.random() * items.length)];
 
-const getPlaylistFromCategory = async category => {
+const fetchPlaylistFromCategory = async category => {
   const response = await fetchCategoryPlaylists(category);
-  // All available playlists for category
-  const {
-    playlists: { items },
-  } = response;
+  const { items } = response.playlists;
 
   try {
     // Pick a random playlist and get its url
     const playlist = randomPick(items);
-    const {
-      tracks: { href },
-    } = playlist;
-
-    return href;
+    return playlist.tracks.href;
   } catch (error) {
     console.error(`Error getting playlist - ${error}`);
   }
 };
 
-const getTrackFromPlaylist = async playlist => {
+const fetchTrackFromPlaylist = async playlist => {
   const response = await fetchPlaylist(playlist);
   const { items } = response;
 
@@ -45,8 +40,18 @@ const getTrackFromPlaylist = async playlist => {
   }
 };
 
-const handleRefreshSoundtrack = () => {
-  window.location.reload();
+const buildSoundtrackFromAnswers = async categories => {
+  const playlistsAsPromised = [];
+  const tracksAsPromised = [];
+
+  categories.forEach(category => playlistsAsPromised.push(fetchPlaylistFromCategory(category)));
+  const playlists = await promiseResolveAll(playlistsAsPromised);
+
+  playlists.forEach(playlist => tracksAsPromised.push(fetchTrackFromPlaylist(playlist)));
+  const tracks = await promiseResolveAll(tracksAsPromised);
+  const trackUris = tracks.map(({ uri }) => uri);
+
+  return { tracks, trackUris };
 };
 
 const initEventListners = () => {
@@ -71,21 +76,22 @@ const GetSoundtrack = () => {
   const userData = useContext(UserDataContext);
   const categoriesForQuestionAnswers = JSON.parse(getItem('answers'));
 
-  const playlistsPromise = [];
-  const tracksPromise = [];
-
   const [trackData, setTrackData] = useState();
-  const [trackURIs, setTrackURIs] = useState();
+  const [trackUris, setTrackUris] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const handleSaveAsPlaylist = uris => {
-    savePlaylist(userData.id, uris)
-      .then(response => {
-        navigate(`/your-soundtrack/${response.id}`);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  const handleSaveAsPlaylist = async uris => {
+    const response = await savePlaylist(userData.id, uris);
+    navigate(`/your-soundtrack/${response.id}`);
+  };
+
+  const handleRefreshSoundtrack = async () => {
+    setIsLoaded(false);
+
+    const response = await buildSoundtrackFromAnswers(categoriesForQuestionAnswers);
+    setTrackUris(response.trackUris);
+    setTrackData(response.tracks);
+    setIsLoaded(true);
   };
 
   const handleReset = () => {
@@ -97,34 +103,14 @@ const GetSoundtrack = () => {
     if (trackData) initEventListners();
 
     if (!trackData) {
-      // Get a random playlist for each category
-      categoriesForQuestionAnswers.forEach(category =>
-        playlistsPromise.push(getPlaylistFromCategory(category))
-      );
-
-      try {
-        Promise.all(playlistsPromise)
-          .then(playlistsResolved => {
-            // Get a random track from each playlist
-            playlistsResolved?.forEach(playlist =>
-              tracksPromise.push(getTrackFromPlaylist(playlist))
-            );
-
-            return Promise.all(tracksPromise);
-          })
-          .then(tracksResolved => {
-            setTrackURIs(tracksResolved.map(({ uri }) => uri));
-            setTrackData(tracksResolved);
-          })
-          .then(() => {
-            setIsLoaded(true);
-          })
-          .catch(error => console.error(`Error in Playlists - ${error}`));
-      } catch (error) {
-        console.error(error);
-      }
+      buildSoundtrackFromAnswers(categoriesForQuestionAnswers)
+        .then(response => {
+          setTrackUris(response.trackUris);
+          setTrackData(response.tracks);
+        })
+        .then(() => setIsLoaded(true));
     }
-  }, [playlistsPromise]);
+  });
 
   if (!isLoaded) return <LoadingSpinner />;
 
@@ -133,7 +119,7 @@ const GetSoundtrack = () => {
       <div className="get-soundtrack__ctas">
         <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
         <Button text="Refresh soundtrack" onClick={handleRefreshSoundtrack} />
-        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(trackURIs)} />
+        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(trackUris)} />
       </div>
       <div className="get-soundtrack__list">
         {trackData?.map(track => (
