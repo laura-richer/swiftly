@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Header from './Header';
-import { UserDataContextProvider } from './UserDataContext';
+import { UserDataContextProvider } from '../contextProviders/UserDataContext';
 
 const MainContainer = ({ children }) => {
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { UserDataContext } from './UserDataContext';
+import { UserDataContext } from '../contextProviders/UserDataContext';
 import guestUser from '../../assets/images/ghost.png';
 
 const Header = () => {

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCategoryPlaylists, fetchPlaylist, savePlaylist } from '../utils/api-calls';
 import { getItem, resetCurrentProgress } from '../utils/local-storage';
-import { UserDataContext } from '../components/UserDataContext';
+import { UserDataContext } from '../contextProviders/UserDataContext';
 
 import LoadingSpinner from '../atoms/LoadingSpinner';
 

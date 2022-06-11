@@ -1,18 +1,18 @@
-import { createContext, useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
+import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchUserData } from '../utils/api-calls';
+import { LoginContext } from './LoginContext';
 
 const UserDataContext = createContext();
 
 const UserDataContextProvider = ({ children }) => {
-  const [cookies] = useCookies(['accessToken']);
   const [userData, setUserData] = useState();
+  const isLoggedIn = useContext(LoginContext);
 
   useEffect(() => {
-    if (cookies.accessToken) {
+    if (isLoggedIn) {
       try {
-        fetchUserData(cookies.accessToken)
+        fetchUserData()
           .then(response => {
             setUserData({
               name: response.display_name,
@@ -28,7 +28,7 @@ const UserDataContextProvider = ({ children }) => {
         throw error;
       }
     }
-  }, [cookies.accessToken]);
+  }, [isLoggedIn]);
 
   return <UserDataContext.Provider value={userData}>{children}</UserDataContext.Provider>;
 };
