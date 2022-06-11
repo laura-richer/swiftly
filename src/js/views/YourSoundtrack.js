@@ -27,14 +27,27 @@ const YourSoundtrack = () => {
 
   return (
     <div className="your-soundtrack">
-      <Button tag="a" target="_blank" link={playlistUrl} text="Open in Spotify" />
-      <Button text="Start over" onClick={handleReset} />
-      <Button
-        tag="a"
-        target="_blank"
-        link="https://www.facebook.com/sharer/sharer.php?u=https%3A//open.spotify.com/playlist/1C1grPOraf0hFqzXYqo6qU?si=6e72478c53b64b4d"
-        text="Share on Facebook"
-      />
+      <div className="your-soundtrack__ctas">
+        <Button tag="a" target="_blank" link={playlistUrl} text="Open in Spotify" />
+        <Button
+          tag="a"
+          target="_blank"
+          link={`https://www.facebook.com/sharer/sharer.php?u=https%3A//open.spotify.com/playlist/${playlistId}?si=cb34f8ddc1224cea`}
+          text="Share on Facebook"
+        />
+        <Button text="Start over" onClick={handleReset} />
+      </div>
+
+      <iframe
+        className="your-soundtrack__embed"
+        title={playlistId}
+        src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
+        width="100%"
+        height="380"
+        frameBorder="0"
+        allowFullScreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      ></iframe>
     </div>
   );
 };

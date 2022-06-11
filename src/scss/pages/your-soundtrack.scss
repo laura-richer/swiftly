@@ -3,4 +3,16 @@
 
   flex-direction: column;
   flex-grow: 1;
+
+  &__ctas {
+    @include media('md') {
+      @include space-content;
+
+      width: 100%;
+    }
+  }
+
+  &__embed {
+    border-radius: $spacer;
+  }
 }

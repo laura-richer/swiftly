@@ -18,7 +18,7 @@ const getAccessToken = url => {
     .find(element => element.startsWith('expires_in'))
     .split('=')[1];
 
-  Cookies.set('accessToken', accessToken, { maxAge });
+  Cookies.set('accessToken', accessToken, { 'max-age': maxAge });
   return accessToken;
 };
 

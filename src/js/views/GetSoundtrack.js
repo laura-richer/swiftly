@@ -117,9 +117,9 @@ const GetSoundtrack = () => {
   return (
     <div className="get-soundtrack">
       <div className="get-soundtrack__ctas">
-        <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
-        <Button text="Refresh soundtrack" onClick={handleRefreshSoundtrack} />
         <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(trackUris)} />
+        <Button text="Refresh soundtrack" onClick={handleRefreshSoundtrack} />
+        <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
       </div>
       <div className="get-soundtrack__list">
         {trackData?.map(track => (
