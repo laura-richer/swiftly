@@ -11,9 +11,9 @@
 @import './components/header';
 @import './components/main';
 
-@import './pages/get-soundtrack';
-@import './pages/quiz';
-@import './pages/your-soundtrack';
+@import './views/get-soundtrack';
+@import './views/quiz';
+@import './views/your-soundtrack';
 
 html {
   font-size: 10px;
