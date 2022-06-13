@@ -1,6 +1,29 @@
 import PropTypes from 'prop-types';
 
-const AudioPlayer = ({ track }) => {
+type ArtistProperties = {
+  name: string;
+};
+
+type ImageProperties = {
+  url: string;
+};
+
+type AlbumProperties = {
+  images: Array<ImageProperties>;
+};
+
+type TrackProperties = {
+  album: AlbumProperties;
+  name: string;
+  artists: Array<ArtistProperties>;
+  preview_url: string;
+};
+
+type AudioPlayerProperties = {
+  track: TrackProperties;
+};
+
+const AudioPlayer = ({ track }: AudioPlayerProperties) => {
   return (
     <div className="audio-player">
       {track.album?.images[0]?.url && (
