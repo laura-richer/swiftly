@@ -44,6 +44,9 @@ const Quiz = () => {
   };
 
   const handleNext = (id, choiceId) => {
+    // Add choice value to answers
+    updateAnswers(currentQuestion, choiceId);
+
     // If theres no more questions, get soundtrack
     if (!id) {
       navigate('/get-soundtrack');
@@ -52,9 +55,6 @@ const Quiz = () => {
 
     // Save progress
     ls.setItem('currentQuestionId', id);
-
-    // Add choice value to answers
-    updateAnswers(currentQuestion, choiceId);
 
     // Get next question
     try {
