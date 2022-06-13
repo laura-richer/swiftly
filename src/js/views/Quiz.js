@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as ls from '../utils/local-storage';
 import questions from '../json/questions.json';
 
-import Button from '../atoms/Button';
+import Button from '../atoms/Button.tsx';
 import Form from '../components/Form';
 
 const getQuestion = questionId => questions.find(question => question.id === questionId);

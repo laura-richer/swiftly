@@ -4,10 +4,10 @@ import { fetchCategoryPlaylists, fetchPlaylist, savePlaylist } from '../utils/ap
 import { getItem, resetCurrentProgress } from '../utils/local-storage';
 import { UserDataContext } from '../contextProviders/UserDataContext';
 
-import LoadingSpinner from '../atoms/LoadingSpinner';
+import LoadingSpinner from '../atoms/LoadingSpinner.tsx';
 
-const AudioPlayer = lazy(() => import('../atoms/AudioPlayer'));
-const Button = lazy(() => import('../atoms/Button'));
+const AudioPlayer = lazy(() => import('../atoms/AudioPlayer.tsx'));
+const Button = lazy(() => import('../atoms/Button.tsx'));
 
 const promiseResolveAll = async promise => Promise.all(promise);
 
