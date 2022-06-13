@@ -37,17 +37,16 @@ const YourSoundtrack = () => {
         />
         <Button text="Start over" onClick={handleReset} />
       </div>
-
-      <iframe
-        className="your-soundtrack__embed"
-        title={playlistId}
-        src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
-        width="100%"
-        height="380"
-        frameBorder="0"
-        allowFullScreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      ></iframe>
+      <div className="your-soundtrack__embed">
+        <iframe
+          title={playlistId}
+          src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
+          width="100%"
+          frameBorder="0"
+          allowFullScreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        ></iframe>
+      </div>
     </div>
   );
 };

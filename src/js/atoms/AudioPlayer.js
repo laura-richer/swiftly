@@ -1,24 +1,17 @@
 import PropTypes from 'prop-types';
 
 const AudioPlayer = ({ track }) => {
+  const { artist, image, name, previewUrl } = track;
+
   return (
     <div className="audio-player">
-      {track.album?.images[0]?.url && (
-        <img
-          className="audio-player__image"
-          loading="lazy"
-          src={track.album?.images[0]?.url}
-          alt={track.name}
-        />
-      )}
+      {image && <img className="audio-player__image" loading="lazy" src={image} alt={name} />}
       <div className="audio-player__preview">
         <div className="audio-player__meta">
-          <p>{track.name}</p>
-          <p>{track.artists[0].name}</p>
+          <p>{name}</p>
+          <p>{artist}</p>
         </div>
-        {track.preview_url && (
-          <audio className="audio-player__preview" src={track.preview_url} controls />
-        )}
+        {previewUrl && <audio className="audio-player__preview" src={previewUrl} controls />}
       </div>
     </div>
   );

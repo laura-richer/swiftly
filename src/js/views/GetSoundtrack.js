@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { useState, useEffect, useContext, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCategoryPlaylists, fetchPlaylist, savePlaylist } from '../utils/api-calls';
@@ -49,9 +50,17 @@ const buildSoundtrackFromAnswers = async categories => {
 
   playlists.forEach(playlist => tracksAsPromised.push(fetchTrackFromPlaylist(playlist)));
   const tracks = await promiseResolveAll(tracksAsPromised);
-  const trackUris = tracks.map(({ uri }) => uri);
 
-  return { tracks, trackUris };
+  return tracks.map(({ album, artists, id, name, preview_url, uri }) => {
+    return {
+      artist: artists?.[0].name,
+      id,
+      image: album?.images?.[0].url,
+      name,
+      previewUrl: preview_url,
+      uri,
+    };
+  });
 };
 
 const initEventListners = () => {
@@ -77,11 +86,11 @@ const GetSoundtrack = () => {
   const categoriesForQuestionAnswers = JSON.parse(getItem('answers'));
 
   const [trackData, setTrackData] = useState();
-  const [trackUris, setTrackUris] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const handleSaveAsPlaylist = async uris => {
-    const response = await savePlaylist(userData.id, uris);
+  const handleSaveAsPlaylist = async tracks => {
+    const trackUris = tracks.map(({ uri }) => uri);
+    const response = await savePlaylist(userData.id, trackUris);
     navigate(`/your-soundtrack/${response.id}`);
   };
 
@@ -89,8 +98,7 @@ const GetSoundtrack = () => {
     setIsLoaded(false);
 
     const response = await buildSoundtrackFromAnswers(categoriesForQuestionAnswers);
-    setTrackUris(response.trackUris);
-    setTrackData(response.tracks);
+    setTrackData(response);
     setIsLoaded(true);
   };
 
@@ -105,8 +113,7 @@ const GetSoundtrack = () => {
     if (!trackData) {
       buildSoundtrackFromAnswers(categoriesForQuestionAnswers)
         .then(response => {
-          setTrackUris(response.trackUris);
-          setTrackData(response.tracks);
+          setTrackData(response);
         })
         .then(() => setIsLoaded(true));
     }
@@ -117,7 +124,7 @@ const GetSoundtrack = () => {
   return (
     <div className="get-soundtrack">
       <div className="get-soundtrack__ctas">
-        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(trackUris)} />
+        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(trackData)} />
         <Button text="Refresh soundtrack" onClick={handleRefreshSoundtrack} />
         <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
       </div>

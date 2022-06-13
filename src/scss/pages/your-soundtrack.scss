@@ -2,7 +2,7 @@
   @include center-content;
 
   flex-direction: column;
-  flex-grow: 1;
+  height: 100%;
 
   &__ctas {
     @include media('md') {
@@ -13,6 +13,20 @@
   }
 
   &__embed {
-    border-radius: $spacer;
+    width: 100%;
+
+    @include media('md') {
+      flex-grow: 1;
+    }
+
+
+    iframe {
+      height: 450px;
+      border-radius: $spacer;
+
+      @include media('md') {
+        height: calc(100% - $spacer * 5);
+      }
+    }
   }
 }
