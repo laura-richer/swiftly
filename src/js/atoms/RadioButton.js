@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
+import * as ls from '../utils/local-storage';
 
-const RadioButton = ({ question, choice, activeId, onChange }) => {
+const handleChange = (question, choiceId) => {
+  // Save current choice
+  ls.setItem('currentChoiceId', choiceId);
+
+  return { question, choiceId };
+};
+
+const RadioButton = ({ question, choice, activeId }) => {
   return (
     <label className="radio-btn" key={choice.id}>
       <input
@@ -10,7 +18,7 @@ const RadioButton = ({ question, choice, activeId, onChange }) => {
         value={choice.value}
         name={`question-${question.id}`}
         checked={activeId === choice.id ? 'checked' : ''}
-        onChange={() => onChange(question, choice.id)}
+        onChange={() => handleChange(question, choice.id)}
       />
       <span className="radio-btn__indicator"></span>
       <p>{choice.label}</p>

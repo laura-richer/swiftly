@@ -1,19 +1,13 @@
 import PropTypes from 'prop-types';
 import RadioButton from '../atoms/RadioButton';
 
-const Form = ({ question, activeId, onChange }) => {
+const Form = ({ question, activeId }) => {
   return (
     <form className="form">
       <label className="form__label">{question.label}</label>
       <div id={`question-${question.id}`}>
         {question.choices.map(choice => (
-          <RadioButton
-            key={choice.id}
-            question={question}
-            choice={choice}
-            activeId={activeId}
-            onChange={() => onChange(question, choice.id)}
-          />
+          <RadioButton key={choice.id} question={question} choice={choice} activeId={activeId} />
         ))}
       </div>
     </form>
