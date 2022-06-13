@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getPlaylist } from '../utils/api-calls';
 import { resetCurrentProgress } from '../utils/local-storage';
 
-import Button from '../atoms/Button.tsx';
+import Button from '../atoms/Button';
 
 const YourSoundtrack = () => {
   const navigate = useNavigate();

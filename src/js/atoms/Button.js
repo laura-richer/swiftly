@@ -1,16 +1,6 @@
 import PropTypes from 'prop-types';
 
-type ButtonProperties = {
-  tag?: string;
-  link?: string;
-  target?: string;
-  text: string;
-  btnStyle: string;
-  onClick: () => void;
-  disabled?: boolean;
-};
-
-const Button = ({ tag, link, target, text, btnStyle, onClick, disabled }: ButtonProperties) => {
+const Button = ({ tag, link, target, text, btnStyle, onClick, disabled }) => {
   if (tag === 'a')
     return (
       <a href={link} target={target} className={`btn btn--${btnStyle}`}>
