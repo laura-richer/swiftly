@@ -1,8 +1,8 @@
 .your-soundtrack {
   @include center-content;
 
-  flex-direction: column;
   height: 100%;
+  flex-direction: column;
 
   &__ctas {
     @include media('md') {
@@ -17,8 +17,8 @@
 
     @include media('md') {
       flex-grow: 1;
+      margin-top: $spacer * 4;
     }
-
 
     iframe {
       height: 450px;

@@ -97,10 +97,12 @@ const GetSoundtrack = () => {
   const [buildingSoundtrack, setBuildingSoundtrack] = useState(true);
   const [soundtrackError, setSoundtrackError] = useState();
   const [soundtrackData, setSoundtrackData] = useState();
+  const [savingPlaylist, setSavingPlaylist] = useState(false);
 
   const errorMessage = 'Error building your soundtrack, refresh the page to try again';
 
   const handleSaveAsPlaylist = async tracks => {
+    setSavingPlaylist(true);
     const trackUris = tracks.map(({ uri }) => uri);
     const response = await savePlaylist(userData.id, trackUris);
     navigate(`/your-soundtrack/${response.id}`);
@@ -144,7 +146,11 @@ const GetSoundtrack = () => {
   return (
     <div className="get-soundtrack">
       <div className="get-soundtrack__ctas">
-        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(soundtrackData)} />
+        <Button
+          disabled={savingPlaylist}
+          text="Save to Spotify"
+          onClick={() => handleSaveAsPlaylist(soundtrackData)}
+        />
         <Button text="Refresh soundtrack" onClick={handleRefreshSoundtrack} />
         <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
       </div>
