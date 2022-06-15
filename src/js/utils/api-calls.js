@@ -18,26 +18,11 @@ export const fetchUserData = async () => {
   }
 };
 
-export const fetchCategories = async () => {
-  try {
-    const { data } = await axios.get('https://api.spotify.com/v1/browse/categories?limit=50', {
-      headers: headers(),
-    });
-
-    return data;
-  } catch (error) {
-    console.error(`Error fetching category playlists - ${error}`);
-  }
-};
-
 export const fetchCategoryPlaylists = async category => {
   try {
-    const { data } = await axios.get(
-      `${API_ENDPOINT}/browse/categories/${category}/playlists?limit=50`,
-      {
-        headers: headers(),
-      }
-    );
+    const { data } = await axios.get(`${API_ENDPOINT}/browse/categories/${category}/playlists`, {
+      headers: headers(),
+    });
 
     return data;
   } catch (error) {
@@ -57,7 +42,7 @@ export const fetchPlaylist = async playlist => {
   }
 };
 
-export const getPlaylist = async playlistId => {
+export const fetchSoundtrack = async playlistId => {
   try {
     const { data } = await axios.get(`${API_ENDPOINT}/playlists/${playlistId}`, {
       headers: headers(),

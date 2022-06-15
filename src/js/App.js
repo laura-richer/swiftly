@@ -12,14 +12,13 @@ import YourSoundtrack from './views/YourSoundtrack';
 
 const App = () => {
   const [accessToken, setAccessToken] = useState();
-  const loginCallbackUrl = window.location?.hash;
 
   useEffect(() => {
     if (!accessToken) setAccessToken(Cookies.get('accessToken'));
   }, [accessToken]);
 
   return (
-    <LoginContextProvider callbackUrl={loginCallbackUrl}>
+    <LoginContextProvider>
       <MainContainer>
         {!accessToken ? (
           <a className="btn" href={LOGIN_URL}>

@@ -1,13 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getPlaylist } from '../utils/api-calls';
+import { fetchSoundtrack } from '../utils/api-calls';
 import { resetCurrentProgress } from '../utils/local-storage';
 
 import Button from '../atoms/Button';
 
+const Error = lazy(() => import('../atoms/Error'));
+const LoadingSpinner = lazy(() => import('../atoms/LoadingSpinner'));
+
 const YourSoundtrack = () => {
   const navigate = useNavigate();
   const { playlistId } = useParams();
+
+  const [fetchError, setFetchError] = useState();
+  const [isFetchingSoundtrack, setIsFetchingSoundtrack] = useState(true);
   const [playlistUrl, setPlaylistUrl] = useState();
 
   const handleReset = () => {
@@ -16,14 +22,20 @@ const YourSoundtrack = () => {
   };
 
   useEffect(() => {
-    getPlaylist(playlistId)
+    fetchSoundtrack(playlistId)
       .then(response => {
         setPlaylistUrl(response.external_urls.spotify);
       })
-      .catch(error => {
-        console.error(error);
+      .catch(() => {
+        setFetchError('Cant find your soundtrack');
+      })
+      .then(() => {
+        setIsFetchingSoundtrack(false);
       });
   }, [playlistId]);
+
+  if (isFetchingSoundtrack) return <LoadingSpinner />;
+  if (fetchError) return <Error message={fetchError} />;
 
   return (
     <div className="your-soundtrack">

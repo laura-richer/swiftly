@@ -1,18 +1,9 @@
-import { useEffect, useState, useContext } from 'react';
+import { useContext } from 'react';
 import { UserDataContext } from '../contextProviders/UserDataContext';
-import guestUser from '../../assets/images/ghost.png';
 
 const Header = () => {
-  const [userName, setUserName] = useState('Stranger');
-  const [userImage, setUserImage] = useState(guestUser);
   const userData = useContext(UserDataContext);
-
-  useEffect(() => {
-    if (userData) {
-      setUserName(userData.name);
-      setUserImage(userData.image);
-    }
-  }, [userData]);
+  const { userName, userImage } = userData;
 
   return (
     <header className="header">

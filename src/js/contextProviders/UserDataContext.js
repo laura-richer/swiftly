@@ -2,31 +2,31 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchUserData } from '../utils/api-calls';
 import { LoginContext } from './LoginContext';
+import guestUser from '../../assets/images/ghost.png';
 
 const UserDataContext = createContext();
 
 const UserDataContextProvider = ({ children }) => {
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({
+    userName: 'Stranger',
+    userImage: guestUser,
+    id: 'stranger',
+  });
   const isLoggedIn = useContext(LoginContext);
 
   useEffect(() => {
     if (isLoggedIn) {
-      try {
-        fetchUserData()
-          .then(response => {
-            setUserData({
-              name: response.display_name,
-              image: response.images[0].url,
-              id: response.id,
-            });
-          })
-          .catch(error => {
-            console.error(error);
+      fetchUserData()
+        .then(response => {
+          setUserData({
+            userName: response.display_name,
+            userImage: response.images?.[0].url ? response.images?.[0].url : guestUser,
+            id: response.id,
           });
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
+        })
+        .catch(error => {
+          console.error(error, 'error fetching user data');
+        });
     }
   }, [isLoggedIn]);
 

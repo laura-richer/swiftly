@@ -6,41 +6,41 @@ import { resetCurrentProgress } from '../utils/local-storage';
 
 const getAccessToken = url => {
   if (!url) return;
+  try {
+    const accessToken = url
+      .slice(1)
+      .split('&')
+      .find(element => element.startsWith('access_token'))
+      .split('=')[1];
+    const maxAge = url
+      .slice(1)
+      .split('&')
+      .find(element => element.startsWith('expires_in'))
+      .split('=')[1];
 
-  const accessToken = url
-    .slice(1)
-    .split('&')
-    .find(element => element.startsWith('access_token'))
-    .split('=')[1];
-  const maxAge = url
-    .slice(1)
-    .split('&')
-    .find(element => element.startsWith('expires_in'))
-    .split('=')[1];
-
-  Cookies.set('accessToken', accessToken, { 'max-age': maxAge });
-  return accessToken;
+    Cookies.set('accessToken', accessToken, { 'max-age': maxAge });
+    return accessToken;
+  } catch (error) {
+    console.error(error, 'Cant process access token');
+  }
 };
 
 const LoginContext = createContext();
 
-const LoginContextProvider = ({ children, callbackUrl }) => {
+const LoginContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState(Cookies.get('accessToken'));
+  const loginCallbackUrl = window.location?.hash;
 
   const processLogin = url => {
-    try {
-      resetCurrentProgress();
-      setAccessToken(getAccessToken(url));
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-    }
+    resetCurrentProgress();
+    setAccessToken(getAccessToken(url));
+    navigate('/');
   };
 
   useEffect(() => {
-    if (callbackUrl && !accessToken) processLogin(callbackUrl);
-  }, [callbackUrl, accessToken]);
+    if (loginCallbackUrl && !accessToken) processLogin(loginCallbackUrl);
+  }, [loginCallbackUrl, accessToken]);
 
   return <LoginContext.Provider value={accessToken}>{children}</LoginContext.Provider>;
 };

@@ -9,6 +9,7 @@ import LoadingSpinner from '../atoms/LoadingSpinner';
 
 const AudioPlayer = lazy(() => import('../atoms/AudioPlayer'));
 const Button = lazy(() => import('../atoms/Button'));
+const Error = lazy(() => import('../atoms/Error'));
 
 const promiseResolveAll = async promise => Promise.all(promise);
 
@@ -19,7 +20,7 @@ const fetchPlaylistFromCategory = async category => {
   const { items } = response.playlists;
 
   try {
-    // Pick a random playlist and get its url
+    // Pick a random playlist from a category
     const playlist = randomPick(items);
     return playlist.tracks.href;
   } catch (error) {
@@ -34,6 +35,7 @@ const fetchTrackFromPlaylist = async playlist => {
   try {
     const popularTracks = items.filter(item => item.track?.popularity > 40);
 
+    // Pick a random track in a playlist
     // If theres no popular tracks in a playlist, use all tracks from playlist
     return popularTracks.length > 0 ? randomPick(popularTracks).track : randomPick(items).track;
   } catch (error) {
@@ -45,22 +47,29 @@ const buildSoundtrackFromAnswers = async categories => {
   const playlistsAsPromised = [];
   const tracksAsPromised = [];
 
-  categories.forEach(category => playlistsAsPromised.push(fetchPlaylistFromCategory(category)));
-  const playlists = await promiseResolveAll(playlistsAsPromised);
+  try {
+    // Get random playlist for each category
+    categories.forEach(category => playlistsAsPromised.push(fetchPlaylistFromCategory(category)));
+    const playlists = await promiseResolveAll(playlistsAsPromised);
 
-  playlists.forEach(playlist => tracksAsPromised.push(fetchTrackFromPlaylist(playlist)));
-  const tracks = await promiseResolveAll(tracksAsPromised);
+    // Get random track from each playlist
+    playlists.forEach(playlist => tracksAsPromised.push(fetchTrackFromPlaylist(playlist)));
+    const tracks = await promiseResolveAll(tracksAsPromised);
 
-  return tracks.map(({ album, artists, id, name, preview_url, uri }) => {
-    return {
-      artist: artists?.[0].name,
-      id,
-      image: album?.images?.[0].url,
-      name,
-      previewUrl: preview_url,
-      uri,
-    };
-  });
+    return tracks.map(({ album, artists, id, name, preview_url, uri }) => {
+      return {
+        artist: artists?.[0].name,
+        id,
+        image: album?.images?.[0].url,
+        name,
+        previewUrl: preview_url,
+        uri,
+      };
+    });
+  } catch (error) {
+    console.error(error, 'Error building soundtrack');
+    throw error;
+  }
 };
 
 const initEventListners = () => {
@@ -85,8 +94,11 @@ const GetSoundtrack = () => {
   const userData = useContext(UserDataContext);
   const categoriesForQuestionAnswers = JSON.parse(getItem('answers'));
 
-  const [trackData, setTrackData] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [buildingSoundtrack, setBuildingSoundtrack] = useState(true);
+  const [soundtrackError, setSoundtrackError] = useState();
+  const [soundtrackData, setSoundtrackData] = useState();
+
+  const errorMessage = 'Error building your soundtrack, refresh the page to try again';
 
   const handleSaveAsPlaylist = async tracks => {
     const trackUris = tracks.map(({ uri }) => uri);
@@ -95,11 +107,15 @@ const GetSoundtrack = () => {
   };
 
   const handleRefreshSoundtrack = async () => {
-    setIsLoaded(false);
-
-    const response = await buildSoundtrackFromAnswers(categoriesForQuestionAnswers);
-    setTrackData(response);
-    setIsLoaded(true);
+    setBuildingSoundtrack(true);
+    try {
+      const response = await buildSoundtrackFromAnswers(categoriesForQuestionAnswers);
+      setSoundtrackData(response);
+    } catch {
+      setSoundtrackError(errorMessage);
+    } finally {
+      setBuildingSoundtrack(false);
+    }
   };
 
   const handleReset = () => {
@@ -108,28 +124,32 @@ const GetSoundtrack = () => {
   };
 
   useEffect(() => {
-    if (trackData) initEventListners();
+    if (soundtrackData) initEventListners();
 
-    if (!trackData) {
+    if (!soundtrackData) {
       buildSoundtrackFromAnswers(categoriesForQuestionAnswers)
         .then(response => {
-          setTrackData(response);
+          setSoundtrackData(response);
         })
-        .then(() => setIsLoaded(true));
+        .catch(() => {
+          setSoundtrackError(errorMessage);
+        })
+        .then(() => setBuildingSoundtrack(false));
     }
   });
 
-  if (!isLoaded) return <LoadingSpinner />;
+  if (buildingSoundtrack) return <LoadingSpinner />;
+  if (soundtrackError) return <Error message={soundtrackError} />;
 
   return (
     <div className="get-soundtrack">
       <div className="get-soundtrack__ctas">
-        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(trackData)} />
+        <Button text="Save to Spotify" onClick={() => handleSaveAsPlaylist(soundtrackData)} />
         <Button text="Refresh soundtrack" onClick={handleRefreshSoundtrack} />
         <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
       </div>
       <div className="get-soundtrack__list">
-        {trackData?.map(track => (
+        {soundtrackData?.map(track => (
           <AudioPlayer key={track.id} track={track} />
         ))}
       </div>
