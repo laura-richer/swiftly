@@ -111,7 +111,6 @@ const GetSoundtrack = () => {
     } catch {
       navigate(`/your-soundtrack/error`);
     }
-
   };
 
   const handleRefreshSoundtrack = async () => {

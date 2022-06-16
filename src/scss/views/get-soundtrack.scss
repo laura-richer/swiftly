@@ -12,12 +12,13 @@
 
     @include media('md') {
       @include space-content;
+
       flex-direction: row;
     }
 
     @include media('lg') {
-      flex-shrink: 0;
       flex-direction: column;
+      flex-shrink: 0;
       justify-content: flex-start;
       margin-left: $spacer * 2;
     }
