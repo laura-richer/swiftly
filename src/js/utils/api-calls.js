@@ -57,7 +57,7 @@ export const fetchSoundtrack = async playlistId => {
 const createPlaylist = async userId => {
   const requestBody = {
     name: `SwiftLY Daily soundtrack - ${new Date().toDateString()}`,
-    public: true,
+    public: false,
   };
 
   try {
