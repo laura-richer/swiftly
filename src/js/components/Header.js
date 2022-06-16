@@ -3,20 +3,22 @@ import { UserDataContext } from '../contextProviders/UserDataContext';
 
 const Header = () => {
   const userData = useContext(UserDataContext);
-  const { userName, userImage } = userData;
+  const { userName, userImage } = userData || {};
 
   return (
     <header className="header">
       <div className="header__container">
         <h1>SwiftLY.</h1>
-        <div className="header__user-data">
-          <h4>
-            Hi there
-            <br />
-            {userName}
-          </h4>
-          <img src={userImage} alt={userName} className="header__image" />
-        </div>
+        {userData && (
+          <div className="header__user-data">
+            <h4>
+              Hi there
+              <br />
+              {userName}
+            </h4>
+            <img src={userImage} alt={userName} className="header__image" />
+          </div>
+        )}
       </div>
     </header>
   );

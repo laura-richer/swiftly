@@ -104,8 +104,14 @@ const GetSoundtrack = () => {
   const handleSaveAsPlaylist = async tracks => {
     setSavingPlaylist(true);
     const trackUris = tracks.map(({ uri }) => uri);
-    const response = await savePlaylist(userData.id, trackUris);
-    navigate(`/your-soundtrack/${response.id}`);
+
+    try {
+      const response = await savePlaylist(userData.id, trackUris);
+      navigate(`/your-soundtrack/${response.id}`);
+    } catch {
+      navigate(`/your-soundtrack/error`);
+    }
+
   };
 
   const handleRefreshSoundtrack = async () => {
@@ -141,13 +147,12 @@ const GetSoundtrack = () => {
   });
 
   if (buildingSoundtrack) return <LoadingSpinner />;
-  if (soundtrackError) return <Error message={soundtrackError} />;
 
   return (
     <div className="get-soundtrack">
       <div className="get-soundtrack__ctas">
         <Button
-          disabled={savingPlaylist}
+          disabled={savingPlaylist || !!soundtrackError}
           text="Save to Spotify"
           onClick={() => handleSaveAsPlaylist(soundtrackData)}
         />
@@ -155,9 +160,15 @@ const GetSoundtrack = () => {
         <Button btnStyle="secondary" text="Start over" onClick={handleReset} />
       </div>
       <div className="get-soundtrack__list">
-        {soundtrackData?.map(track => (
-          <AudioPlayer key={track.id} track={track} />
-        ))}
+        {soundtrackError ? (
+          <Error message={soundtrackError} />
+        ) : (
+          <div>
+            {soundtrackData?.map(track => (
+              <AudioPlayer key={track.id} track={track} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

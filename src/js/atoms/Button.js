@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 const Button = ({ tag, link, target, text, btnStyle, onClick, disabled }) => {
   if (tag === 'a')
     return (
-      <a href={link} target={target} className={`btn btn--${btnStyle}`}>
+      <a
+        href={link}
+        target={target}
+        className={`btn btn--${btnStyle} ${disabled ? 'btn--disabled' : ''}`}
+      >
         {text}
       </a>
     );

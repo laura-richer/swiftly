@@ -7,14 +7,18 @@ import guestUser from '../../assets/images/ghost.png';
 const UserDataContext = createContext();
 
 const UserDataContextProvider = ({ children }) => {
-  const [userData, setUserData] = useState({
-    userName: 'Stranger',
-    userImage: guestUser,
-    id: 'stranger',
-  });
+  const [userData, setUserData] = useState();
   const isLoggedIn = useContext(LoginContext);
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      setUserData({
+        userName: 'Stranger',
+        userImage: guestUser,
+        id: 'stranger',
+      });
+    }
+
     if (isLoggedIn) {
       fetchUserData()
         .then(response => {

@@ -92,7 +92,11 @@ const addTracksToPlaylist = async (playlistId, tracks) => {
 };
 
 export const savePlaylist = async (userId, tracks) => {
-  const newPlaylist = await createPlaylist(userId);
-  await addTracksToPlaylist(newPlaylist.id, tracks);
-  return newPlaylist;
+  try {
+    const newPlaylist = await createPlaylist(userId);
+    await addTracksToPlaylist(newPlaylist.id, tracks);
+    return newPlaylist;
+  } catch (error) {
+    console.error(error, 'Error saving soundtrack');
+  }
 };

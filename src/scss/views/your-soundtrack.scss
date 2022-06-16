@@ -1,6 +1,5 @@
 .your-soundtrack {
-  @include center-content;
-
+  display: flex;
   height: 100%;
   flex-direction: column;
 
@@ -12,21 +11,21 @@
     }
   }
 
-  &__embed {
+  &__content {
     width: 100%;
 
     @include media('md') {
       flex-grow: 1;
       margin-top: $spacer * 4;
     }
+  }
 
-    iframe {
-      height: 450px;
-      border-radius: $spacer;
+  &__embed {
+    height: 450px;
+    border-radius: $spacer;
 
-      @include media('md') {
-        height: calc(100% - $spacer * 5);
-      }
+    @include media('md') {
+      height: calc(100% - $spacer * 5);
     }
   }
 }
