@@ -25,7 +25,7 @@
     border-radius: $spacer;
 
     @include media('md') {
-      height: calc(100% - $spacer * 5);
+      height: calc(100% - $spacer * 10);
     }
   }
 }

@@ -11,7 +11,7 @@
   &__container {
     max-width: 768px;
     flex-grow: 1;
-    padding: $spacer * 3 $spacer * 2;
+    padding: $spacer * 3 $spacer * 2 $spacer * 8;
     margin: 0 auto;
 
     @include media('lg') {

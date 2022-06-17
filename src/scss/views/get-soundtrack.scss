@@ -26,7 +26,6 @@
 
   &__list {
     flex-grow: 1;
-    padding-bottom: $spacer * 5;
 
     @include media('lg') {
       overflow: scroll;
