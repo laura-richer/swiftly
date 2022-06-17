@@ -4,4 +4,14 @@
     margin-bottom: $spacer * 2;
     font-size: $font-sm;
   }
+
+  &__group {
+    display: grid;
+    gap: $spacer * 1.5;
+
+    @include media('md') {
+      grid-template-columns: 1fr 1fr;
+
+    }
+  }
 }
