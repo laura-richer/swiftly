@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Footer from './Footer';
 import Header from './Header';
 import { UserDataContextProvider } from '../contextProviders/UserDataContext';
 
@@ -16,6 +17,8 @@ const MainContainer = ({ children }) => {
 
           <div className="main__content-wrapper">{children}</div>
         </div>
+
+        <Footer />
       </div>
     </UserDataContextProvider>
   );

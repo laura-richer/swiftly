@@ -26,10 +26,11 @@
 
   &__list {
     flex-grow: 1;
+    padding-bottom: $spacer * 5;
 
     @include media('lg') {
       overflow: scroll;
-      padding-bottom: $spacer * 5;
+      padding-bottom: $spacer * 10;
 
       &::-webkit-scrollbar {
         width: calc($spacer / 2);

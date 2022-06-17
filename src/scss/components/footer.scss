@@ -1,0 +1,20 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: $spacer 0;
+  background-color: $black;
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+  }
+
+  &__img {
+    width: 100px;
+    height: auto;
+    margin-left: $spacer;
+  }
+}
