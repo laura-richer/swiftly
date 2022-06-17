@@ -14,7 +14,7 @@
     padding: $spacer * 3 $spacer * 2;
     margin: 0 auto;
 
-    @include media('md') {
+    @include media('lg') {
       overflow: hidden;
       padding: $spacer * 6 $spacer * 2;
     }

@@ -56,11 +56,18 @@ const buildSoundtrackFromAnswers = async categories => {
     playlists.forEach(playlist => tracksAsPromised.push(fetchTrackFromPlaylist(playlist)));
     const tracks = await promiseResolveAll(tracksAsPromised);
 
-    return tracks.map(({ album, artists, id, name, preview_url, uri }) => {
+    return tracks.map(({ album, artists, id, name, preview_url, uri, external_urls }) => {
       return {
-        artist: artists?.[0].name,
+        artist: {
+          name: artists?.[0].name,
+          url: artists?.[0].external_urls.spotify,
+        },
+        album: {
+          image: album.images?.[0].url,
+          url: album.external_urls.spotify,
+        },
         id,
-        image: album?.images?.[0].url,
+        url: external_urls.spotify,
         name,
         previewUrl: preview_url,
         uri,
