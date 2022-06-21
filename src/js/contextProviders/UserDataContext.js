@@ -24,7 +24,7 @@ const UserDataContextProvider = ({ children }) => {
         .then(response => {
           setUserData({
             userName: response.display_name,
-            userImage: response.images?.[0].url ? response.images?.[0].url : guestUser,
+            userImage: response.images?.[0]?.url || guestUser,
             id: response.id,
           });
         })

@@ -5,6 +5,8 @@ const Header = () => {
   const userData = useContext(UserDataContext);
   const { userName, userImage } = userData || {};
 
+  console.log(userData);
+
   return (
     <header className="header">
       <div className="header__container">
