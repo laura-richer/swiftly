@@ -23,9 +23,9 @@ const UserDataContextProvider = ({ children }) => {
       fetchUserData()
         .then(response => {
           setUserData({
-            userName: response.display_name,
+            userName: response.display_name || 'Stranger',
             userImage: response.images?.[0]?.url || guestUser,
-            id: response.id,
+            id: response.id || 'stranger',
           });
         })
         .catch(error => {
