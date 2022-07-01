@@ -25,6 +25,7 @@ const AudioPlayer = ({ track }) => {
         </div>
         {previewUrl && (
           <audio
+            data-testid="audio-player"
             className="audio-player__preview"
             src={previewUrl}
             controls

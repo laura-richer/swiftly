@@ -59,11 +59,11 @@ const buildSoundtrackFromAnswers = async categories => {
     return tracks.map(({ album, artists, id, name, preview_url, uri, external_urls }) => {
       return {
         artist: {
-          name: artists?.[0].name,
-          url: artists?.[0].external_urls.spotify,
+          name: artists?.[0]?.name,
+          url: artists?.[0]?.external_urls.spotify,
         },
         album: {
-          image: album.images?.[0].url,
+          image: album.images?.[0]?.url,
           url: album.external_urls.spotify,
         },
         id,

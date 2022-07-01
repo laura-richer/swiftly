@@ -1,9 +1,19 @@
-import { getAccessToken } from './App';
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 
-describe('Get access token', () => {
-  test('Should return undefined if no callback url is provided', () => {
-    const input = '';
-    const output = undefined;
-    expect(getAccessToken(input)).toEqual(output);
+const MockApp = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+};
+
+describe('App', () => {
+  it('shows login button if there is no access token', async () => {
+    render(<MockApp />);
+    const buttonElement = screen.getByRole('link', { name: /login to spotify/i });
+    expect(buttonElement).toBeInTheDocument();
   });
 });
