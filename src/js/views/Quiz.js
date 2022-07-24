@@ -6,6 +6,8 @@ import questions from '../json/questions.json';
 import Button from '../atoms/Button';
 import Form from '../components/Form';
 
+import '../../scss/views/quiz.scss';
+
 const getQuestion = questionId => questions.find(question => question.id === questionId);
 const getChoice = (question, choiceId) => question.choices.find(choice => choice.id === choiceId);
 

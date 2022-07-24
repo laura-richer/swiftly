@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { UserDataContext } from '../contextProviders/UserDataContext';
 
+import '../../scss/components/header.scss';
+
 const Header = () => {
   const userData = useContext(UserDataContext);
   const { userName, userImage } = userData || {};
-
-  console.log(userData);
 
   return (
     <header className="header">

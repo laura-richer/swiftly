@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import RadioButton from '../atoms/RadioButton';
 
+import '../../scss/components/form.scss';
+
 const Form = ({ question, activeId, onChange }) => {
   return (
     <form className="form">

@@ -1,3 +1,5 @@
+@import '../resources';
+
 .form {
   &__label {
     display: block;
@@ -11,7 +13,6 @@
 
     @include media('md') {
       grid-template-columns: 1fr 1fr;
-
     }
   }
 }

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import '../../scss/atoms/audio-player.scss';
+
 const AudioPlayer = ({ track }) => {
   const { artist, album, name, previewUrl, url } = track;
 

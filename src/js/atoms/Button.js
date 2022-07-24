@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import '../../scss/atoms/btn.scss';
+
 const Button = ({ tag, link, target, text, btnStyle, onClick, disabled }) => {
   if (tag === 'a')
     return (

@@ -14,7 +14,13 @@ $font-xs: 1.4rem;
 $spacer: 1rem;
 
 $breakpoints: (
-  'sm': (min-width: 380px),
-  'md': (min-width: 540px),
-  'lg': (min-width: 768px)
+  'sm': (
+    min-width: 380px,
+  ),
+  'md': (
+    min-width: 540px,
+  ),
+  'lg': (
+    min-width: 768px,
+  ),
 );

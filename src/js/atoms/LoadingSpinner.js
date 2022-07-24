@@ -1,3 +1,5 @@
+import '../../scss/atoms/loading-spinner.scss';
+
 const LoadingSpinner = () => {
   return (
     <div className="loading-spinner">

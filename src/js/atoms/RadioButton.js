@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import '../../scss/atoms/radio-btn.scss';
+
 const RadioButton = ({ question, choice, activeId, onChange }) => {
   return (
     <label className="radio-btn" key={choice.id}>
