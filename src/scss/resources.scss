@@ -1,0 +1,15 @@
+@import './resources/__variables';
+@import './resources/__mixins';
+@import './resources/_typography';
+
+html {
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  background: $gradient;
+  font-family: Circular, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

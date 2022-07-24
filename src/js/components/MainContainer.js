@@ -3,6 +3,8 @@ import Footer from './Footer';
 import Header from './Header';
 import { UserDataContextProvider } from '../contextProviders/UserDataContext';
 
+import '../../scss/components/main-container.scss';
+
 const MainContainer = ({ children }) => {
   return (
     <UserDataContextProvider>

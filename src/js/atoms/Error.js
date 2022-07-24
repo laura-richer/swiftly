@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import '../../scss/atoms/error.scss';
+
 const Error = ({ message }) => {
   return (
     <div className="error">

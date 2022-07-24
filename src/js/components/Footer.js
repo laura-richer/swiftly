@@ -1,5 +1,7 @@
 import spotifyLogo from '../../assets/images/spotify-logo.png';
 
+import '../../scss/components/footer.scss';
+
 const Footer = () => {
   return (
     <footer className="footer">
