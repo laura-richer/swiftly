@@ -1,6 +1,6 @@
 import spotifyLogo from '../../assets/images/spotify-logo.png';
 
-import '../../scss/components/footer.scss';
+import '../../scss/molecules/footer.scss';
 
 const Footer = () => {
   return (

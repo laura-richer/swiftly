@@ -7,7 +7,7 @@ import { UserDataContext } from '../contextProviders/UserDataContext';
 
 import LoadingSpinner from '../atoms/LoadingSpinner';
 
-import '../../scss/views/get-soundtrack.scss';
+import '../../scss/pages/get-soundtrack.scss';
 
 const AudioPlayer = lazy(() => import('../atoms/AudioPlayer'));
 const Button = lazy(() => import('../atoms/Button'));

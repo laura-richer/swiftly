@@ -4,11 +4,11 @@ import Cookies from 'js-cookie';
 import { LOGIN_URL } from './utils/variables';
 
 import { LoginContextProvider } from './contextProviders/LoginContext';
-import MainContainer from './components/MainContainer';
+import MainContainer from './organisims/MainContainer';
 
-import Quiz from './views/Quiz';
-import GetSoundtrack from './views/GetSoundtrack';
-import YourSoundtrack from './views/YourSoundtrack';
+import Quiz from './pages/Quiz';
+import GetSoundtrack from './pages/GetSoundtrack';
+import YourSoundtrack from './pages/YourSoundtrack';
 
 const App = () => {
   const [accessToken, setAccessToken] = useState();

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { UserDataContext } from '../contextProviders/UserDataContext';
 
-import '../../scss/components/header.scss';
+import '../../scss/molecules/header.scss';
 
 const Header = () => {
   const userData = useContext(UserDataContext);

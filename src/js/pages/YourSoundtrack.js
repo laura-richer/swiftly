@@ -5,7 +5,7 @@ import { resetCurrentProgress } from '../utils/local-storage';
 
 import Button from '../atoms/Button';
 
-import '../../scss/views/your-soundtrack.scss';
+import '../../scss/pages/your-soundtrack.scss';
 
 const Error = lazy(() => import('../atoms/Error'));
 const LoadingSpinner = lazy(() => import('../atoms/LoadingSpinner'));
