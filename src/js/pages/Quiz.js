@@ -4,9 +4,9 @@ import * as ls from '../utils/local-storage';
 import questions from '../json/questions.json';
 
 import Button from '../atoms/Button';
-import Form from '../components/Form';
+import Form from '../molecules/Form';
 
-import '../../scss/views/quiz.scss';
+import '../../scss/pages/quiz.scss';
 
 const getQuestion = questionId => questions.find(question => question.id === questionId);
 const getChoice = (question, choiceId) => question.choices.find(choice => choice.id === choiceId);

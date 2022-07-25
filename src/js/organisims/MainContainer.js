@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import Footer from './Footer';
-import Header from './Header';
+import Footer from '../molecules/Footer';
+import Header from '../molecules/Header';
 import { UserDataContextProvider } from '../contextProviders/UserDataContext';
 
-import '../../scss/components/main-container.scss';
+import '../../scss/organisims/main-container.scss';
 
 const MainContainer = ({ children }) => {
   return (
