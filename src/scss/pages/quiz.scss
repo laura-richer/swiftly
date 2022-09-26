@@ -1,6 +1,8 @@
 @import '../resources';
 
 .quiz {
+  @include animate-in(0.5s);
+
   width: 100%;
   max-width: 380px;
 

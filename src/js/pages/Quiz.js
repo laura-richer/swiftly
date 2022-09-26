@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as ls from '../utils/local-storage';
 import questions from '../json/questions.json';
@@ -16,6 +16,7 @@ const Quiz = () => {
   const savedQuestionId = Number(ls.getItem('currentQuestionId'));
   const savedChoiceId = Number(ls.getItem('currentChoiceId'));
 
+  const [isLoaded, setIsLoaded] = useState(false);
   const [questionId, setQuestionId] = useState(savedQuestionId || 1);
   const [currentChoicehoiceId, setCurrentChoiceId] = useState(savedChoiceId || 1);
 
@@ -70,8 +71,12 @@ const Quiz = () => {
     }
   };
 
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
-    <div className="quiz">
+    <div className={`quiz ${isLoaded && 'quiz--animate-in'}`}>
       <Form question={currentQuestion} activeId={currentChoicehoiceId} onChange={updateChoice} />
       <div className="quiz__footer">
         <Button

@@ -18,6 +18,18 @@ export const fetchUserData = async () => {
   }
 };
 
+export const fetchCategories = async () => {
+  try {
+    const { data } = await axios.get(`${API_ENDPOINT}/browse/categories?limit=50`, {
+      headers: headers(),
+    });
+
+    return data;
+  } catch {
+    console.error('Cant fetch categories');
+  }
+};
+
 export const fetchCategoryPlaylists = async category => {
   try {
     const { data } = await axios.get(`${API_ENDPOINT}/browse/categories/${category}/playlists`, {

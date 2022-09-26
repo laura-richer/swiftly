@@ -18,10 +18,10 @@ const promiseResolveAll = async promise => Promise.all(promise);
 const randomPick = items => items[Math.floor(Math.random() * items.length)];
 
 const fetchPlaylistFromCategory = async category => {
-  const response = await fetchCategoryPlaylists(category);
-  const { items } = response.playlists;
-
   try {
+    const response = await fetchCategoryPlaylists(category);
+    const { items } = response.playlists;
+
     // Pick a random playlist from a category
     const playlist = randomPick(items);
     return playlist.tracks.href;

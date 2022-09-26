@@ -22,7 +22,13 @@
     }
   }
 
+  &__introduction {
+    @include animate-in;
+  }
+
   &__content-wrapper {
+    @include animate-in(0.25s);
+
     width: 100%;
     margin-top: $spacer * 2.5;
 

@@ -29,3 +29,14 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin animate-in($animationDelay: 0s) {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.5s ease-in-out $animationDelay;
+
+  &--animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
