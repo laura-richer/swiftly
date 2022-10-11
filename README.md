@@ -1,5 +1,7 @@
 # SwiftLY
 
+A React app that utilises the Spotify API in order to generate you a unique playlist for your day based on your mood and planned activities.
+
 Created with [Create React App](https://github.com/facebook/create-react-app).
 
 Uses: 
