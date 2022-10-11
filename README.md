@@ -5,7 +5,8 @@ Created with [Create React App](https://github.com/facebook/create-react-app).
 Uses: 
 - React
 - React testing library
-- Scss
+- SCSS
+- Spotify API
 
 ## Getting set up
 
