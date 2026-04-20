@@ -8,7 +8,7 @@ const UserDataContext = createContext();
 
 const UserDataContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
-  const isLoggedIn = useContext(LoginContext);
+  const { accessToken: isLoggedIn } = useContext(LoginContext);
 
   useEffect(() => {
     if (!isLoggedIn) {
